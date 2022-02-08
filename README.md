@@ -10,6 +10,8 @@
 
 <!-- NEW SECTION BRONSON IS TESTING -->
 
+# NEW SECTION BRONSON IS TESTING
+
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -31,7 +33,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="https://media.vanityfair.com/photos/5dfbc4cd6056aa0008852c29/1:1/w_1500,h_1500,c_limit/cats-little-gold-men.jpg" alt="Logo" width="160" height="160">
+    <img src="https://media.newyorker.com/photos/5dfab39dde5fcf00086aec77/16:9/w_2559,h_1439,c_limit/Lane-Cats.jpg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">project_title</h3>

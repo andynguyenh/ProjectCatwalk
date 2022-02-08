@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://media.newyorker.com/photos/5dfab39dde5fcf00086aec77/16:9/w_2559,h_1439,c_limit/Lane-Cats.jpg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">project_title</h3>

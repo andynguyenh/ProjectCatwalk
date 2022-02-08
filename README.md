@@ -11,7 +11,6 @@
 <!-- NEW SECTION BRONSON IS TESTING -->
 
 # NEW SECTION BRONSON IS TESTING
-# NEW SECTION ANDY IS TESTING
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -37,7 +36,7 @@
     <img src="https://media.newyorker.com/photos/5dfab39dde5fcf00086aec77/16:9/w_2559,h_1439,c_limit/Lane-Cats.jpg" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Project Catwalk</h3>
 
   <p align="center">
     Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers.   Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site. 

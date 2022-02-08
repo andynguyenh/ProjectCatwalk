@@ -199,7 +199,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/FEC-Hickory/ProjectCatwalk)
+Project Link: [https://github.com/FEC-Hickory/ProjectCatwalk](https://github.com/FEC-Hickory/ProjectCatwalk)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

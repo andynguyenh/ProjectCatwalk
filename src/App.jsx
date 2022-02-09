@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import Overview from './Overview.jsx';
+import OverviewAnisah from './components/productDetailsAnisah/overviewAnisah.jsx';
+import OverviewAllie from './components/productDetailsAllie/overviewAllie.jsx';
+import QuestionsAndAnswers from './components/questionsAndAnswers/questionsAndAnswers.jsx';
+import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.jsx';
+import RelatedItems from './components/relatedItems/relatedItems.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +14,15 @@ class App extends React.Component {
   }
 
   render() {
-    return (<h1>Project Catwalk Hello World !!</h1>
+    return (
+      <div>
+        <h1>Project Catwalk Hello World !!</h1>
+        <OverviewAnisah />
+        <OverviewAllie />
+        <QuestionsAndAnswers />
+        <RatingsAndReviews />
+        <RelatedItems />
+      </div>
     )
   }
 }

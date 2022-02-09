@@ -21,6 +21,7 @@
     "build": "webpack --config webpack.config.js",
     "test": "npm run test",
     "react-dev": "webpack --mode development --watch",
+    "sass-dev": "sass --watch styles.scss styles.css",
     "server-dev": "npx nodemon server/index.js"
   },
   "repository": {

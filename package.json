@@ -22,7 +22,7 @@
     "build": "webpack --config webpack.config.js && babel src -d lib",
     "test": "npm run test",
     "react-dev": "webpack --mode development --watch",
-    "sass-dev": "sass --watch styles.scss styles.css",
+    "sass-dev": "sass --watch styles.scss dist/styles.css",
     "server-dev": "npx nodemon server/index.js"
   },
   "repository": {

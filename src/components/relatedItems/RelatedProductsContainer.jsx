@@ -13,6 +13,7 @@ class RelatedProductsContainer extends React.Component {
     return (
       <div id="RelatedProductsContainer">
         <h3>Related Items will go here!</h3>
+        {console.log('in RepatedProductsContainer: this.props.currentProduct.id is: ', this.props.currentProduct.id)}
         {console.log('this.state.relatedItems is', this.state.relatedItems)}
         <ItemCard number={this.state.relatedItems[0]} />
         <ItemCard number={this.state.relatedItems[1]} />
@@ -31,7 +32,7 @@ var data = '';
 
 var config = {
   method: 'get',
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/related/',
+  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${this.props.currentProduct.id}/related/`,
   headers: {
     'Authorization': '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'
   },

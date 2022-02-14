@@ -14,7 +14,7 @@ class RelatedItems extends React.Component {
             <div>
                 {console.log('props.currentProduct in relatedItems:', this.props.currentProduct)}
                 <h2>Related Products Module </h2>
-                <RelatedProductsContainer />
+                <RelatedProductsContainer currentProduct={this.props.currentProduct}/>
                 <YourOutfitContainer />
             </div>
         )

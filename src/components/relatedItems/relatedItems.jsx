@@ -1,4 +1,6 @@
 import React from 'react';
+import RelatedProductsContainer from './RelatedProductsContainer.jsx'
+import YourOutfitContainer from './YourOutfitContainer.jsx'
 
 class RelatedItems extends React.Component {
     constructor(props) {
@@ -9,10 +11,14 @@ class RelatedItems extends React.Component {
     }
     render() {
         return (
-            <h2>Related Items Module </h2>
+            <div>
+                {console.log('props.currentProduct in relatedItems:', this.props.currentProduct)}
+                <h2>Related Products Module </h2>
+                <RelatedProductsContainer />
+                <YourOutfitContainer />
+            </div>
         )
     }
 }
-
 
 export default RelatedItems;

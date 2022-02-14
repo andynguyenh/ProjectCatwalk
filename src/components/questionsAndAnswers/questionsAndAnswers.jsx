@@ -14,5 +14,4 @@ class QuestionAndAnswers extends React.Component {
     }
 }
 
-
 export default QuestionAndAnswers;

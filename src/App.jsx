@@ -16,6 +16,7 @@ class App extends React.Component {
       styles: [],
       currentProduct: [],
       currentStyle: [],
+      image: '',
       price: '',
       skus: []
     }
@@ -58,6 +59,7 @@ class App extends React.Component {
               currentProduct: productRes.data[0],
               styles: styleRes.data.results,
               currentStyle: styleRes.data.results[0],
+              image: styleRes.data.results[0].photos[0].thumbnail_url,
               price: stylePrice,
               skus: skuArray
             })
@@ -86,13 +88,13 @@ class App extends React.Component {
 
     this.setState({
       currentStyle: style,
+      image: style.photos[0].thumbnail_url,
       price: stylePrice,
       skus: skuArray
     })
   }
 
   updateProduct(product) {
-    console.log(product);
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
     .then(styleRes => {
       // create sku array of objects so easier to map through in component
@@ -118,6 +120,7 @@ class App extends React.Component {
         currentProduct: product,
         styles: styleRes.data.results,
         currentStyle: styleRes.data.results[0],
+        image: styleRes.data.results[0].photos[0].thumbnail_url,
         price: stylePrice,
         skus: skuArray
       })
@@ -133,10 +136,10 @@ class App extends React.Component {
       <div>
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAnisah />
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} />
-        <QuestionsAndAnswers />
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} />
+        <QuestionsAndAnswers currentProduct={this.state.currentProduct}/>
         <RatingsAndReviews />
-        <RelatedItems />
+        <RelatedItems currentProduct={this.state.currentProduct}/>
       </div>
     )
   }

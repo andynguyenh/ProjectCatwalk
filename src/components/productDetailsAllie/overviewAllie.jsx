@@ -12,24 +12,25 @@ class OverviewAllie extends React.Component {
     }
 
     selectedStyle(style) {
-      this.props.updateStyle(style);
+        this.props.updateStyle(style);
     }
 
     selectedProduct(product) {
-      this.props.updateProduct(product);
+        this.props.updateProduct(product);
     }
 
 
     render() {
-        // console.log(this.state.tesTest);
+        console.log(this.props.styles);
         return (
             <div>
                 <h2>Overview Module Allie</h2>
                 <div>
                     <b>Image Gallery</b>
                     {this.props.products.map((product, i) => (
-                        <div onClick={() => this.selectedProduct(product)}key={i}>{product.name}</div>
+                        <div onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
                     ))}
+                    <img src={this.props.image}></img>
                 </div>
                 <br></br>
                 <div><b>Star Rating</b></div>

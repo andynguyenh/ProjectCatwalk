@@ -1,4 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+import QAList from './qalist.jsx'
+import QASearchBar from './qaSearchBar.jsx'
+import Styled from 'styled-components'
 
 class QuestionAndAnswers extends React.Component {
     constructor(props) {
@@ -7,12 +11,16 @@ class QuestionAndAnswers extends React.Component {
 
         }
     }
+
     render() {
         return (
-            <h2>Q and A Module </h2>
+            <div>
+            <h2 className="QA-header">Question and Answers</h2>
+            </div>
         )
     }
 }
 
 
 export default QuestionAndAnswers;
+

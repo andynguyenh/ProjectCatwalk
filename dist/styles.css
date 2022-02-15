@@ -4,3 +4,31 @@ h1 {
 
 /*# sourceMappingURL=styles.css.map */
 
+.overviewContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery {
+  background-color: red;
+}
+
+.ratings {
+  background-color: orange;
+}
+
+.category {
+  background-color: yellow;
+}
+
+.style {
+  background-color: green;
+}
+
+.selection {
+  background-color: blue;
+}
+
+.description {
+  background-color: purple;
+}

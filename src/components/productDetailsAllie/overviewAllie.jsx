@@ -21,7 +21,6 @@ class OverviewAllie extends React.Component {
 
 
     render() {
-        console.log(this.props.styles);
         return (
             <div>
                 <h2>Overview Module Allie</h2>

@@ -14,7 +14,7 @@ const LoadMore = (props) => {
       props.setShowAnswers(true)
     } else if (type === 'questions') {
       props.setShowQuestions(true)
-      // props.setCount(props.count + 2)
+      props.setCount(props.count + 2)
     }
   }
 

@@ -13,6 +13,7 @@ const QuestionsList = (props) => {
 
   const handleCollapse = () => {
     setShowQuestions(false);
+    setCount(count - 2);
   }
 
   return (
@@ -28,7 +29,7 @@ const QuestionsList = (props) => {
                 <div>
                   <div>Q: {oneQuestion.question_body}</div>
                     <AnswersList question={oneQuestion} key={oneQuestion.question_id}/>
-                    <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} /> : <></>}
+                    <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount}/> : <></>}
                     </div>
                   </div>
               )

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Styled from 'styled-components'
 
 
+
 class QASearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ class QASearchBar extends React.Component {
       term: ''
     }
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // handleSubmit(e) {
@@ -25,7 +26,7 @@ class QASearchBar extends React.Component {
 
   render() {
     return (
-    <div className="qa-searchBar">
+    <div>
         <SearchForm>
           <Input type="text" placeholder="Have a question? Search for answers!" name="search" onChange={this.handleOnChange}></Input>
           <Button  onClick={this.handleSubmit}>Search</Button>

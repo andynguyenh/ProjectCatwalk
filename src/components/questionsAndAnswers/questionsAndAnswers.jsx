@@ -1,26 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-import QAList from './qalist.jsx'
-import QASearchBar from './qaSearchBar.jsx'
-import Styled from 'styled-components'
+import React,{ useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import QuestionsList from './questionslist.jsx';
+import AnswersList from './answerslist.jsx';
+import QASearchBar from './qaSearchBar.jsx';
+import Styled from 'styled-components';
+import axios from 'axios';
+import { API_KEY } from '../../../config.js';
 
-class QuestionAndAnswers extends React.Component {
+class QuestionsAndAnswers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            answersDisplay: 0
         }
     }
 
-    render() {
-        return (
-            <div>
-            <h2 className="QA-header">Question and Answers</h2>
-            </div>
-        )
-    }
+  render() {
+    return (
+        <div>
+          <Header>Questions and Answers</Header>
+           <QuestionsList questions={this.props.currentQuestions}/>
+        </div>
+    )
+  }
 }
 
+export default QuestionsAndAnswers;
 
-export default QuestionAndAnswers;
-
+const Header = Styled.h2`
+color: blue;
+`

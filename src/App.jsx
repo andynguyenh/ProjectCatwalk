@@ -6,7 +6,7 @@ import OverviewAnisah from './components/productDetailsAnisah/overviewAnisah.jsx
 import OverviewAllie from './components/productDetailsAllie/overviewAllie.jsx';
 import QuestionsAndAnswers from './components/questionsAndAnswers/questionsAndAnswers.jsx';
 import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.jsx';
-import RelatedItems from './components/relatedItems/relatedItems.jsx';
+import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +18,9 @@ class App extends React.Component {
       currentStyle: [],
       image: '',
       price: '',
-      skus: []
+      skus: [],
+      relatedItems: [],
+      relatedItemsData: []
     }
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
@@ -29,6 +31,17 @@ class App extends React.Component {
     this.getProducts();
   }
 
+  //input: array of item numbers related to the current item
+
+  //create array relatedItemsData
+  //for each of those items
+    //make a new object inside the results array
+    //make request to Products API
+      //take name, category, and price from this request and add key/value pairs to the current object
+    //make request to reviews API for star rating
+      //calculate the average rating
+      //add rating key/value pair to the object
+    //push the object onto relatedItemsData
 
   getProducts() {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', { headers: { Authorization: API_KEY } })
@@ -53,15 +66,24 @@ class App extends React.Component {
             } else {
               stylePrice = styleRes.data.results[0].original_price;
             }
-
-            this.setState({
-              products: productRes.data,
-              currentProduct: productRes.data[0],
-              styles: styleRes.data.results,
-              currentStyle: styleRes.data.results[0],
-              image: styleRes.data.results[0].photos[0].thumbnail_url,
-              price: stylePrice,
-              skus: skuArray
+            axios({ //making another request to get the related items array
+              method: 'get',
+              url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/related/`,
+              headers: {
+                'Authorization': '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'
+              }
+            })
+            .then((relatedItemsResponse) => {
+              this.setState({
+                products: productRes.data,
+                currentProduct: productRes.data[0],
+                styles: styleRes.data.results,
+                currentStyle: styleRes.data.results[0],
+                image: styleRes.data.results[0].photos[0].thumbnail_url,
+                price: stylePrice,
+                skus: skuArray,
+                relatedItems: relatedItemsResponse.data
+              })
             })
           })
       })
@@ -116,7 +138,7 @@ class App extends React.Component {
         stylePrice = styleRes.data.results[0].original_price;
       }
 
-      this.setState({
+      this.setState({ //TODO - update relatedItems for Related Items component
         currentProduct: product,
         styles: styleRes.data.results,
         currentStyle: styleRes.data.results[0],
@@ -130,7 +152,6 @@ class App extends React.Component {
     })
   }
 
-
   render() {
     return (
       <div>
@@ -139,7 +160,7 @@ class App extends React.Component {
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} />
         <QuestionsAndAnswers currentProduct={this.state.currentProduct}/>
         <RatingsAndReviews />
-        <RelatedItems currentProduct={this.state.currentProduct}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
       </div>
     )
   }

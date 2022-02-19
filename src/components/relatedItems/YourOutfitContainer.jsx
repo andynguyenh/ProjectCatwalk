@@ -11,10 +11,12 @@ class YourOutfitContainer extends React.Component {
   render() {
     return (
       <div id="YourOutfitContainer">
-        <h3>Your Outfit will go here!</h3>
-        <ItemCard number={1} />
-        <ItemCard number={2} />
-        <ItemCard number={3} />
+        <h3>Your Outfit will go here</h3>
+        <div id="YourOutfitCards">
+          <ItemCard id={1} />
+          <ItemCard id={2} />
+          <ItemCard id={3} />
+        </div>
       </div>
     )
   }

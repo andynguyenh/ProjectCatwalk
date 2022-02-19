@@ -1,5 +1,5 @@
 import React from 'react';
-import RelatedProductsContainer from './RelatedProductsContainer.jsx'
+import RelatedProductsCarousel from './RelatedProductsCarousel.jsx'
 import YourOutfitContainer from './YourOutfitContainer.jsx'
 
 class RelatedItems extends React.Component {
@@ -12,10 +12,9 @@ class RelatedItems extends React.Component {
     render() {
         return (
             <div>
-                {console.log('props.currentProduct in relatedItems:', this.props.currentProduct)}
                 <h2>Related Products Module </h2>
-                <RelatedProductsContainer currentProduct={this.props.currentProduct}/>
-                <YourOutfitContainer />
+                <RelatedProductsCarousel currentProduct={this.props.currentProduct} relatedItems={this.props.relatedItems}/>
+                {/* <YourOutfitContainer /> */}
             </div>
         )
     }

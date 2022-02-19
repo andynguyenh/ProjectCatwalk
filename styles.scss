@@ -1,3 +1,37 @@
 h1 {
   color: blue;
 }
+
+#buttonLeftRight {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+#RelatedProductsCarousel {
+border: solid;
+display:flex;
+overflow: hidden;
+flex-direction: row;
+flex-wrap: nowrap;
+// justify-content: space-evenly;
+}
+
+#ItemCard {
+background-color:hotpink;
+display: inline-flex;
+flex-direction: column;
+// align-items: center;
+// justify-content: center;
+}
+
+#YourOutfitContainer {
+  border: solid;
+}
+
+#YourOutfitCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}

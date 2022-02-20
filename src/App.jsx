@@ -59,7 +59,7 @@ class App extends React.Component {
               currentProduct: productRes.data[0],
               styles: styleRes.data.results,
               currentStyle: styleRes.data.results[0],
-              image: styleRes.data.results[0].photos[0].thumbnail_url,
+              image: styleRes.data.results[0].photos[0].url,
               price: stylePrice,
               skus: skuArray
             })
@@ -88,7 +88,7 @@ class App extends React.Component {
 
     this.setState({
       currentStyle: style,
-      image: style.photos[0].thumbnail_url,
+      image: style.photos[0].url,
       price: stylePrice,
       skus: skuArray
     })
@@ -120,7 +120,7 @@ class App extends React.Component {
         currentProduct: product,
         styles: styleRes.data.results,
         currentStyle: styleRes.data.results[0],
-        image: styleRes.data.results[0].photos[0].thumbnail_url,
+        image: styleRes.data.results[0].photos[0].url,
         price: stylePrice,
         skus: skuArray
       })

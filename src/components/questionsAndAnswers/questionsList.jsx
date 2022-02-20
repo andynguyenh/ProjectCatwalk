@@ -9,6 +9,7 @@ const QuestionsList = (props) => {
 
   useEffect(() => {
     setShowQuestions(false)
+    setCount(2)
   }, [props.questions])
 
   const handleCollapse = () => {
@@ -17,10 +18,6 @@ const QuestionsList = (props) => {
   }
 
   return (
-    // when show is false,
-      // render only up to four questions
-    // when show is true,
-      // render all the questions
     <div>
         {props.questions.map((oneQuestion, i) => {
           if (!showQuestions) {
@@ -39,7 +36,7 @@ const QuestionsList = (props) => {
               <div>
                 <div>Q: {oneQuestion.question_body}</div>
                 <AnswersList question={oneQuestion} key={oneQuestion.question_id}/>
-                  <div>{(i === props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
+                  <div>{(i > props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                   </div>
               </div>
             )

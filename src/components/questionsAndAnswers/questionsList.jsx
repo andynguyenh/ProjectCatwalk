@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import AnswersList from './answersList.jsx'
 import LoadMore from './LoadMore.jsx'
+import Modal from './Modal.jsx'
 
 const QuestionsList = (props) => {
   const [showQuestions, setShowQuestions] = useState(false);
@@ -12,6 +13,10 @@ const QuestionsList = (props) => {
     setCount(2)
   }, [props.questions])
 
+
+  // need to sort questions by helpfulness
+  // create a new variable for sorted questions
+  // set equal to props.questions.sort() blah blah blah
   const handleCollapse = () => {
     setShowQuestions(false);
     setCount(count - 2);
@@ -27,6 +32,7 @@ const QuestionsList = (props) => {
                   <div>
                     <div>Q: {oneQuestion.question_body}</div>
                       <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                      <Modal />
                       <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount}/> : <></>}
                       </div>
                     </div>
@@ -37,6 +43,7 @@ const QuestionsList = (props) => {
                 <div>
                   <div>Q: {oneQuestion.question_body}</div>
                   <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                  <Modal />
                     <div>{(i > props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>
@@ -59,6 +66,8 @@ const QuestionsList = (props) => {
                   <div>
                     <div>Q: {oneQuestion.question_body}</div>
                       <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                      <Modal />
+
                       <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount}/> : <></>}
                       </div>
                     </div>
@@ -69,6 +78,8 @@ const QuestionsList = (props) => {
                 <div>
                   <div>Q: {oneQuestion.question_body}</div>
                   <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                  <Modal />
+
                     <div>{(i > props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>

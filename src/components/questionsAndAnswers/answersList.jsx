@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import dateFormat from 'dateformat'
 import LoadMore from './LoadMore.jsx'
+import Modal from './Modal.jsx'
 
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
@@ -11,6 +12,7 @@ const AnswersList = (props) => {
   for (let i = 0; i < answerKeys.length; i++) {
     answersArray.push(answers[answerKeys[i]])
   }
+  console.log(answersArray)
   answersArray.sort((a,b) => (a.helpfulness < b.helpfulness ? 1 : -1))
 
   const handleCollapse = () => {

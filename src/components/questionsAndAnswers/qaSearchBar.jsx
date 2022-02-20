@@ -1,41 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Styled from 'styled-components'
 
+const QASearchBar = (props) => {
 
-
-class QASearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: ''
-    }
-    this.handleOnChange = this.handleOnChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  // handleSubmit(e) {
-
-  // }
-
-  handleOnChange(e) {
-    this.setState({
-      term: e.target.value
-    })
-  }
-
-  render() {
     return (
     <div>
         <SearchForm>
-          <Input type="text" placeholder="Have a question? Search for answers!" name="search" onChange={this.handleOnChange}></Input>
-          <Button  onClick={this.handleSubmit}>Search</Button>
+          <Input type="text" placeholder="Have a question? Search for answers!" name="search" onChange={(e) => (props.searchOnChange(e))}></Input>
+          <Button  onClick={(e) => (e.preventDefault())}>Search</Button>
         </SearchForm>
     </div>
 
     )
   }
-}
+
 
 export default QASearchBar;
 

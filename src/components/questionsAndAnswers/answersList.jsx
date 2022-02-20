@@ -5,7 +5,6 @@ import LoadMore from './LoadMore.jsx'
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
   // const [helpful, setHelpful] = useState()
-
   var answers = props.question.answers;
   var answersArray = [];
   var answerKeys = Object.keys(answers)
@@ -13,17 +12,12 @@ const AnswersList = (props) => {
     answersArray.push(answers[answerKeys[i]])
   }
   answersArray.sort((a,b) => (a.helpfulness < b.helpfulness ? 1 : -1))
-  console.log(answersArray)
 
   const handleCollapse = () => {
     setShowAnswers(false);
   }
 
   return (
-    // if show is false,
-      // render only 2 answers per question
-    // else if show is true
-      // render all the answers per question
     <div>
       {answersArray.map((oneAnswer, i) => {
         if (!showAnswers) {

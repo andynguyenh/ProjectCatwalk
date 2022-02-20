@@ -11,15 +11,23 @@ class QuestionsAndAnswers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            answersDisplay: 0
+            searchTerm: ''
         }
+        this.handleOnChange = this.handleOnChange.bind(this)
     }
+
+  handleOnChange(e) {
+    this.setState({
+      searchTerm: e.target.value
+    })
+  }
 
   render() {
     return (
         <div>
           <Header>Questions and Answers</Header>
-           <QuestionsList questions={this.props.currentQuestions}/>
+          <QASearchBar searchOnChange={this.handleOnChange}/>
+           <QuestionsList questions={this.props.currentQuestions} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
         </div>
     )
   }

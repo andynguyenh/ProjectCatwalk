@@ -9,15 +9,15 @@ h1 {
 }
 
 #RelatedProductsCarousel {
-  border: solid;
-  display: flex;
-  overflow: hidden;
-  flex-direction: row;
   flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s;
 }
 
 #ItemCard {
-  background-color: hotpink;
+  border: solid;
+  background-color: gray;
   display: inline-flex;
   flex-direction: column;
 }

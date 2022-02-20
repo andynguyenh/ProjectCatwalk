@@ -7,18 +7,66 @@ class RelatedProductsCarousel extends React.Component {
     super(props);
     this.state = {
       relatedProductsIndex: 0,
-      relatedProductsSorted: []
+      relatedProductsWithInfo: []
     }
+  }
+
+  componentWillLoad() {
+    this.buildRelatedItemProperties()
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate running')
+    if (this.props.relatedItems !== prevProps.relatedItems) {
+      this.buildRelatedItemProperties()
+    }
+  }
+
+  getProductInfo(itemNumber) {
+    return axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemNumber}`,
+      headers: {
+        'Authorization': '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'
+      }
+    })
+  }
+
+  buildRelatedItemProperties() {
+
+    console.log('list of related items:', this.props.relatedItems);
+    let accumulatorArray = []
+
+    this.props.relatedItems.forEach(element => { //iterate through relatedItems prop
+      Promise.all([
+        this.getProductInfo(element) //fetch info for this item from the products API
+      ]).then((responseArray) => {   //for now only responseArray[0] has data
+        let tempObject = {           //create an object with this item's info
+          id: element,
+          name: responseArray[0].data.name,
+          category: responseArray[0].data.category,
+          price: responseArray[0].data.default_price,
+          rating: 5
+        }
+        accumulatorArray.push(tempObject) //& push on accumulator
+      }).catch((error) => {
+        console.log(error);
+      });
+    })
+    console.log('accumulator array at end of process', accumulatorArray)
+    this.setState({
+      relatedProductsWithInfo: accumulatorArray
+    })
   }
 
   //TODO: Set decrement and increment to gray out the buttons at ends
   decrementRelatedProducts() {
+    console.log(this.state.relatedProductsWithInfo)
     if (this.state.relatedProductsIndex > 0) {
       const newValue = this.state.relatedProductsIndex - 1;
       this.setState({
         relatedProductsIndex: newValue
       })
-      sortRelatedProducts()
     }
   }
 
@@ -28,23 +76,8 @@ class RelatedProductsCarousel extends React.Component {
       this.setState({
         relatedProductsIndex: newValue
       })
-      sortRelatedProducts()
     }
   }
-
-  //TODO: use ComponentDidUpdate() to reset all this when the main current product is changed
-  // sortRelatedProducts() {
-  //   console.log('sorting the relatedItems array:')
-  //   let relatedProductsSorted = this.props.relatedItems;
-
-  //   if (this.relatedProductsIndex > 0) {
-  //     let tempArray = relatedProductsSorted.slice(0, relatedProductsIndex)
-  //     relatedProductsSorted.concat(tempArray);
-  //   }
-  //   this.setState({
-  //     this.props.relatedItems: sortRelatedProducts
-  //   })
-  // }
 
   render() {
     return (
@@ -62,9 +95,13 @@ class RelatedProductsCarousel extends React.Component {
           }>Next</button>
         </div>
 
-        <div id="RelatedProductsCarousel">
-          {this.props.relatedItems.map((id) => (
-            <ItemCard id={id} key={id} />
+        {/* {console.log('related items:', this.props.relatedItems)}
+        {console.log('this.relatedProductsIndex:', this.state.relatedProductsIndex)} */}
+
+        <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 203}px)` }}>
+
+          {this.state.relatedProductsWithInfo.map((currentProduct) => (
+            <ItemCard productInfo={currentProduct} key={currentProduct.id} />
           ))}
         </div>
       </div>

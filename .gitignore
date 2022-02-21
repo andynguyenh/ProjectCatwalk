@@ -1,6 +1,9 @@
 #personal
 bronson_personal_notes.txt
 
+#config
+config.js
+
 # Logs
 logs
 *.log

@@ -2,4 +2,35 @@ h1 {
   color: blue;
 }
 
+#buttonLeftRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#RelatedProductsCarousel {
+  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s;
+}
+
+#ItemCard {
+  border: solid;
+  background-color: gray;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+#YourOutfitContainer {
+  border: solid;
+}
+
+#YourOutfitCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
 /*# sourceMappingURL=styles.css.map */

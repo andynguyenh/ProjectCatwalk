@@ -19,9 +19,8 @@ class OverviewAllie extends React.Component {
         this.props.updateProduct(product);
     }
 
-
     render() {
-        //console.log(this.props.styles);
+
         return (
             <div>
                 <h2>Overview Module Allie</h2>

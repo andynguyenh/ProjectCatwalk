@@ -40,3 +40,4 @@ export default QuestionsAndAnswers;
 const Header = Styled.h2`
 color: blue;
 `
+

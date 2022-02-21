@@ -1,6 +1,7 @@
 import React from 'react';
 var axios = require('axios');
 import ItemCard from './ItemCard.jsx'
+import { API_KEY } from '../../../config.js';
 
 class RelatedProductsCarousel extends React.Component {
   constructor(props) {
@@ -27,20 +28,32 @@ class RelatedProductsCarousel extends React.Component {
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemNumber}`,
       headers: {
-        'Authorization': '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'
+        'Authorization': API_KEY
+      }
+    })
+  }
+
+  getProductStyles(itemNumber) {
+    console.log('getProductStyles running...')
+    return axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemNumber}/styles`,
+      headers: {
+        'Authorization': API_KEY
       }
     })
   }
 
   buildRelatedItemProperties() {
 
-    console.log('list of related items:', this.props.relatedItems);
     let accumulatorArray = []
 
     this.props.relatedItems.forEach(element => { //iterate through relatedItems prop
       Promise.all([
-        this.getProductInfo(element) //fetch info for this item from the products API
+        this.getProductInfo(element), //fetch info for this item from the products API
+        this.getProductStyles(element) //fetch info for this item from the styles API
       ]).then((responseArray) => {   //for now only responseArray[0] has data
+        console.log('drilling down', responseArray[1].data.results[0].photos[0].thumbnail_url)
         let tempObject = {           //create an object with this item's info
           id: element,
           name: responseArray[0].data.name,
@@ -48,15 +61,24 @@ class RelatedProductsCarousel extends React.Component {
           price: responseArray[0].data.default_price,
           rating: 5
         }
+
+        if (responseArray[1].data.results[0].photos[0].thumbnail_url === null) {
+          tempObject.picture = `https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png`
+        } else {
+          tempObject.picture = responseArray[1].data.results[0].photos[0].thumbnail_url
+        }
+
         accumulatorArray.push(tempObject) //& push on accumulator
+        console.log(responseArray[0].data)
+      }).then(() => {
+        this.setState({
+          relatedProductsWithInfo: accumulatorArray
+        })
       }).catch((error) => {
         console.log(error);
       });
-    })
-    console.log('accumulator array at end of process', accumulatorArray)
-    this.setState({
-      relatedProductsWithInfo: accumulatorArray
-    })
+    }) //end of forEach
+
   }
 
   //TODO: Set decrement and increment to gray out the buttons at ends

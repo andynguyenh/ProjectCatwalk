@@ -12,7 +12,6 @@ const AnswersList = (props) => {
   for (let i = 0; i < answerKeys.length; i++) {
     answersArray.push(answers[answerKeys[i]])
   }
-  console.log(answersArray)
   answersArray.sort((a,b) => (a.helpfulness < b.helpfulness ? 1 : -1))
 
   const handleCollapse = () => {

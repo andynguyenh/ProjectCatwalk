@@ -17,17 +17,24 @@ const Modal = () => {
           <div className="overlay"></div>
           <div className="modal">
             <header className="modal__header">
-              <h2>Modal Title</h2>
-              <button onClick={closeModal} className="close-button">&times;</button>
+              <h2>Ask Your Question</h2>
+              <h3>About the</h3>
+              <button onClick={closeModal} className="close-button">Submit</button>
             </header>
             <main className="modal__main">
-              <p>Some content here!</p>
+              <form>
+                <label>
+                  Name:
+                  <input type="text" name="name" />
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
             </main>
           </div>
         </>
       )}
 
-      <h2>This is H2 for adding answer or question</h2>
+      {/* <h2>This is H2 for adding answer or question</h2> */}
       <button className="button" onClick={openModal}>Add Question or Add Answer</button>
     </div>
   );

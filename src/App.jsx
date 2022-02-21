@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { API_KEY } from '../config.js';
 import OverviewAllie from './components/productDetailsAllie/overviewAllie.jsx';
-import QuestionsAndAnswers from './components/questionsAndAnswers/questionsAndAnswers.jsx';
+import QuestionsAndAnswers from './components/QAcomponent/QandA.jsx';
 import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.jsx';
-import QuestionsList from './components/questionsAndAnswers/questionslist.jsx'
-import QASearchBar from './components/questionsAndAnswers//qaSearchBar.jsx'
+import QuestionsList from './components/QAcomponent/Questionslist.jsx'
+import QASearchBar from './components/QAcomponent//QAsearch.jsx'
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 
 
@@ -82,6 +82,7 @@ class App extends React.Component {
               image: styleRes.data.results[0].photos[0].url,
               price: stylePrice,
               skus: skuArray
+            })
 
             axios({ //making another request to get the related items array
               method: 'get',
@@ -196,14 +197,14 @@ class App extends React.Component {
     console.log(id, size, quantity);
     // send a post request to cart
   }
-    
+
   render() {
     return (
       <div>
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
         <hr></hr>
-        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions}/>
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct}/>
         <hr></hr>
         <RatingsAndReviews />
         <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>

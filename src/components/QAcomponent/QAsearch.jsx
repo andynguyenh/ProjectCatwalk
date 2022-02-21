@@ -31,6 +31,7 @@ const SearchForm = Styled.form`
 const Button = Styled.button`
   display: inline-block;
   border-radius: 3px;
+  cursor: pointer;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;

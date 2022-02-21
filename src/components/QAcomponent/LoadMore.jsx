@@ -1,4 +1,6 @@
 import React from 'react'
+import Styled from 'styled-components'
+
 
 const LoadMore = (props) => {
   let type = '';
@@ -19,8 +21,21 @@ const LoadMore = (props) => {
   }
 
   return(
-    <button onClick={() => (handleClick())}>Show more {type}</button>
+    <Button onClick={() => (handleClick())}>Show more {type}</Button>
   )
 }
 
 export default LoadMore;
+
+
+const Button = Styled.button`
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  `

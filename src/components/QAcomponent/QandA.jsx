@@ -1,8 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import QuestionsList from './questionslist.jsx';
-import AnswersList from './answerslist.jsx';
-import QASearchBar from './qaSearchBar.jsx';
+import QuestionsList from './Questionslist.jsx';
+import AnswersList from './Answerslist.jsx';
+import QASearchBar from './QAsearch.jsx';
 import Styled from 'styled-components';
 import axios from 'axios';
 import { API_KEY } from '../../../config.js';
@@ -18,6 +18,7 @@ class QuestionsAndAnswers extends React.Component {
     }
 
   handleOnChange(e) {
+    console.log(e.target.value)
     this.setState({
       searchTerm: e.target.value
     })
@@ -28,8 +29,8 @@ class QuestionsAndAnswers extends React.Component {
         <div>
           <Header>Questions and Answers</Header>
           <QASearchBar searchOnChange={this.handleOnChange}/>
-          <QuestionsList questions={this.props.currentQuestions} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
-          <Modal />
+          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
+          <Modal questions={true} currentProduct={this.props.currentProduct.name}/>
         </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
-import AnswersList from './answersList.jsx'
+import AnswersList from './AnswersList.jsx'
 import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
 
@@ -31,8 +31,8 @@ const QuestionsList = (props) => {
                 return (
                   <div>
                     <div>Q: {oneQuestion.question_body}</div>
-                      <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                      <Modal />
+                      <AnswersList  question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true}/>
                       <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount}/> : <></>}
                       </div>
                     </div>
@@ -43,7 +43,8 @@ const QuestionsList = (props) => {
                 <div>
                   <div>Q: {oneQuestion.question_body}</div>
                   <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                  <Modal />
+                  <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true}/>
+
                     <div>{(i > props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>
@@ -66,8 +67,7 @@ const QuestionsList = (props) => {
                   <div>
                     <div>Q: {oneQuestion.question_body}</div>
                       <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                      <Modal />
-
+                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true}/>
                       <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount}/> : <></>}
                       </div>
                     </div>
@@ -78,8 +78,7 @@ const QuestionsList = (props) => {
                 <div>
                   <div>Q: {oneQuestion.question_body}</div>
                   <AnswersList question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                  <Modal />
-
+                  <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true}/>
                     <div>{(i > props.questions.length - 1) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>

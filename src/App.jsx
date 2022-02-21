@@ -23,6 +23,7 @@ class App extends React.Component {
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
+    this.submitCart = this.submitCart.bind(this);
   }
 
   componentDidMount() {
@@ -130,13 +131,18 @@ class App extends React.Component {
     })
   }
 
+  submitCart(id, size, quantity) {
+    console.log(id, size, quantity);
+    // send a post request to cart
+  }
+
 
   render() {
     return (
       <div>
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAnisah />
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} />
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
         <QuestionsAndAnswers currentProduct={this.state.currentProduct}/>
         <RatingsAndReviews />
         <RelatedItems currentProduct={this.state.currentProduct}/>

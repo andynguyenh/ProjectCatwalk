@@ -5,40 +5,44 @@ class OverviewAllie extends React.Component {
         super(props);
         this.state = {
             quantity: ['-'],
-            toggle: true,
             slideIndex: 0,
-            slides: document.getElementsByClassName('slide')
+            slides: document.getElementsByClassName('slide'),
+            selectedSize: '',
+            selectedId: '',
+            selectedQuantity: 0
         }
         this.selectedStyle = this.selectedStyle.bind(this);
         this.selectedProduct = this.selectedProduct.bind(this);
         this.setQuantity = this.setQuantity.bind(this);
         this.nextSlide = this.nextSlide.bind(this);
         this.previousSlide = this.previousSlide.bind(this);
+        this.selectQuantity = this.selectQuantity.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     selectedStyle(style) {
         this.state.slides[this.state.slideIndex].style.display = 'none';
         this.props.updateStyle(style);
+        this.state.slides[0].style.display = 'block';
         this.setState({
-            toggle: true,
             slideIndex: 0,
             quantity: ['-']
         })
     }
 
     selectedProduct(product) {
-        // this.state.slides[this.state.slideIndex].style.display = 'none';
+        this.state.slides[this.state.slideIndex].style.display = 'none';
         this.props.updateProduct(product);
+        this.state.slides[0].style.display = 'block';
         this.setState({
-            toggle: true,
             slideIndex: 0
         })
     }
 
-    setQuantity(quantity) {
+    setQuantity(index) {
         let quantityArray = [];
         let i = 1;
-        while (i <= quantity) {
+        while (i <= this.props.skus[index].quantity) {
             quantityArray.push(i);
             i++;
             if (i >= 16) {
@@ -46,7 +50,9 @@ class OverviewAllie extends React.Component {
             }
         }
         this.setState({
-            quantity: quantityArray
+            quantity: quantityArray,
+            selectedSize: this.props.skus[index].size,
+            selectedId: this.props.skus[index].id
         })
     }
 
@@ -55,14 +61,12 @@ class OverviewAllie extends React.Component {
             this.state.slides[this.props.currentStyle.photos.length - 1].style.display = 'none';
             this.state.slides[0].style.display = 'block';
             this.setState({
-                toggle: false,
                 slideIndex: 0,
             });
         } else {
             this.state.slides[this.state.slideIndex].style.display = 'none';
             this.state.slides[this.state.slideIndex + 1].style.display = 'block';
             this.setState({
-                toggle: false,
                 slideIndex: this.state.slideIndex + 1
             })
         }
@@ -73,22 +77,29 @@ class OverviewAllie extends React.Component {
             this.state.slides[0].style.display = 'none';
             this.state.slides[this.props.currentStyle.photos.length - 1].style.display = 'block';
             this.setState({
-                toggle: false,
                 slideIndex: this.props.currentStyle.photos.length - 1
             })
         } else {
             this.state.slides[this.state.slideIndex].style.display = 'none';
             this.state.slides[this.state.slideIndex - 1].style.display = 'block';
             this.setState({
-                toggle: false,
                 slideIndex: this.state.slideIndex - 1
             })
         }
     }
 
+    selectQuantity(quantity) {
+      this.setState({
+          selectedQuantity: quantity
+      })
+    }
+
+    addToCart() {
+      this.props.submitCart(this.state.selectedId, this.state.selectedSize, this.state.selectedQuantity);
+    }
+
 
     render() {
-        console.log(this.state.slides);
         return (
             <div className="overviewContainer">
                 <div className="gallery">
@@ -97,14 +108,8 @@ class OverviewAllie extends React.Component {
                         <div onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
                     ))}
                     <div className='slideshow-container'>
-                        {this.state.toggle
-                            ? <div className='active'>
-                                <img className='main-image' src={this.props.image}></img>
-                            </div>
-                            : null
-                        }
                         {this.props.currentStyle.photos?.map((photo, i) => (
-                            <div className='slide' key={i}>
+                            <div className={`slide index${i}`} key={i}>
                                 <img className="main-image" src={photo.url}></img>
                             </div>
                         ))}
@@ -131,15 +136,15 @@ class OverviewAllie extends React.Component {
                     <select onChange={() => this.setQuantity(event.target.value)}>
                         <option>Select Size</option>
                         {this.props.skus.map((sku, i) => (
-                            <option key={i} value={sku.quantity}>{sku.size}</option>
+                            <option key={i} value={i}>{sku.size}</option>
                         ))}
                     </select>
-                    <select>
+                    <select onChange={() => this.selectQuantity(event.target.value)}>
                         {this.state.quantity.map((number, i) => (
-                            <option key={i}>{number}</option>
+                            <option key={i} value={number}>{number}</option>
                         ))}
                     </select>
-                    <button>Add to Cart</button>
+                    <button onClick={this.addToCart}>Add to Cart</button>
                 </div>
                 <div className="description">
                     <div><b>Descripiton</b></div>

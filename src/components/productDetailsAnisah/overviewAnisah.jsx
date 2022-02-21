@@ -15,4 +15,4 @@ class OverviewAnisah extends React.Component {
 }
 
 
-export default OverviewAnisah;
+export default OverviewAnisah;``

@@ -2,14 +2,19 @@ import React from 'react';
 var axios = require('axios');
 import ItemCard from './ItemCard.jsx'
 import { API_KEY } from '../../../config.js';
+import ProductComparisonModal from './ProductComparisonModal.jsx'
 
 class RelatedProductsCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       relatedProductsIndex: 0,
-      relatedProductsWithInfo: []
+      relatedProductsWithInfo: [],
+      modalVisible: false,
+      modalContents: {text: 'Hello World!'}
     }
+
+    this.showModal = this.showModal.bind(this)
   }
 
   componentWillLoad() {
@@ -17,7 +22,6 @@ class RelatedProductsCarousel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('componentDidUpdate running')
     if (this.props.relatedItems !== prevProps.relatedItems) {
       this.buildRelatedItemProperties()
     }
@@ -34,7 +38,6 @@ class RelatedProductsCarousel extends React.Component {
   }
 
   getProductStyles(itemNumber) {
-    console.log('getProductStyles running...')
     return axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemNumber}/styles`,
@@ -53,7 +56,6 @@ class RelatedProductsCarousel extends React.Component {
         this.getProductInfo(element), //fetch info for this item from the products API
         this.getProductStyles(element) //fetch info for this item from the styles API
       ]).then((responseArray) => {   //for now only responseArray[0] has data
-        console.log('drilling down', responseArray[1].data.results[0].photos[0].thumbnail_url)
         let tempObject = {           //create an object with this item's info
           id: element,
           name: responseArray[0].data.name,
@@ -69,13 +71,12 @@ class RelatedProductsCarousel extends React.Component {
         }
 
         accumulatorArray.push(tempObject) //& push on accumulator
-        console.log(responseArray[0].data)
       }).then(() => {
         this.setState({
           relatedProductsWithInfo: accumulatorArray
         })
       }).catch((error) => {
-        console.log(error);
+        error.log(error);
       });
     }) //end of forEach
 
@@ -83,7 +84,6 @@ class RelatedProductsCarousel extends React.Component {
 
   //TODO: Set decrement and increment to gray out the buttons at ends
   decrementRelatedProducts() {
-    console.log(this.state.relatedProductsWithInfo)
     if (this.state.relatedProductsIndex > 0) {
       const newValue = this.state.relatedProductsIndex - 1;
       this.setState({
@@ -101,9 +101,16 @@ class RelatedProductsCarousel extends React.Component {
     }
   }
 
+  showModal(modalMessage) {
+    this.setState({
+      modalVisible: !this.state.modalVisible,
+      modalContents: {text: modalMessage}})
+  }
+
   render() {
     return (
       <div>
+        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents}/>
         <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
 
         <div id="buttonLeftRight">
@@ -123,7 +130,7 @@ class RelatedProductsCarousel extends React.Component {
         <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 203}px)` }}>
 
           {this.state.relatedProductsWithInfo.map((currentProduct) => (
-            <ItemCard productInfo={currentProduct} key={currentProduct.id} />
+            <ItemCard productInfo={currentProduct} key={currentProduct.id} showModal={this.showModal}/>
           ))}
         </div>
       </div>

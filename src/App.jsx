@@ -29,6 +29,7 @@ class App extends React.Component {
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
+    this.submitCart = this.submitCart.bind(this);
     this.getCurrentProductQuestionsAndAnswers = this.getCurrentProductQuestionsAndAnswers.bind(this);
   }
 
@@ -78,7 +79,7 @@ class App extends React.Component {
               currentProductID: productRes.data[0].id,
               styles: styleRes.data.results,
               currentStyle: styleRes.data.results[0],
-              image: styleRes.data.results[0].photos[0].thumbnail_url,
+              image: styleRes.data.results[0].photos[0].url,
               price: stylePrice,
               skus: skuArray
 
@@ -142,7 +143,7 @@ class App extends React.Component {
 
     this.setState({
       currentStyle: style,
-      image: style.photos[0].thumbnail_url,
+      image: style.photos[0].url,
       price: stylePrice,
       skus: skuArray
     })
@@ -175,7 +176,7 @@ class App extends React.Component {
         currentProductID: styleRes.data.product_id,
         styles: styleRes.data.results,
         currentStyle: styleRes.data.results[0],
-        image: styleRes.data.results[0].photos[0].thumbnail_url,
+        image: styleRes.data.results[0].photos[0].url,
         price: stylePrice,
         skus: skuArray
       })
@@ -191,11 +192,16 @@ class App extends React.Component {
     })
   }
 
+  submitCart(id, size, quantity) {
+    console.log(id, size, quantity);
+    // send a post request to cart
+  }
+    
   render() {
     return (
       <div>
         <h1>Project Catwalk Hello World !!</h1>
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} />
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
         <hr></hr>
         <QuestionsAndAnswers currentQuestions={this.state.currentQuestions}/>
         <hr></hr>

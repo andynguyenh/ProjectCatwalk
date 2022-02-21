@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { API_KEY } from '../config.js';
-import OverviewAnisah from './components/productDetailsAnisah/overviewAnisah.jsx';
 import OverviewAllie from './components/productDetailsAllie/overviewAllie.jsx';
 import QuestionsAndAnswers from './components/questionsAndAnswers/questionsAndAnswers.jsx';
 import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.jsx';
-import RelatedItems from './components/relatedItems/relatedItems.jsx';
+import QuestionsList from './components/questionsAndAnswers/questionslist.jsx'
+import QASearchBar from './components/questionsAndAnswers//qaSearchBar.jsx'
+import RelatedItems from './components/relatedItems/RelatedItems.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -15,15 +17,20 @@ class App extends React.Component {
       products: [],
       styles: [],
       currentProduct: [],
+      currentProductID: '',
+      currentQuestions: [],
       currentStyle: [],
       image: '',
       price: '',
-      skus: []
+      skus: [],
+      relatedItems: [],
+      relatedItemsData: []
     }
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
     this.submitCart = this.submitCart.bind(this);
+    this.getCurrentProductQuestionsAndAnswers = this.getCurrentProductQuestionsAndAnswers.bind(this);
   }
 
   componentDidMount() {
@@ -31,10 +38,22 @@ class App extends React.Component {
   }
 
 
+  //input: array of item numbers related to the current item
+  //create array relatedItemsData
+  //for each of those items
+    //make a new object inside the results array
+    //make request to Products API
+      //take name, category, and price from this request and add key/value pairs to the current object
+    //make request to reviews API for star rating
+      //calculate the average rating
+      //add rating key/value pair to the object
+    //push the object onto relatedItemsData
+
+
   getProducts() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', { headers: { Authorization: API_KEY } })
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', { headers: { Authorization: `${API_KEY}` } })
       .then(productRes => {
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/styles`, { headers: { Authorization: API_KEY } })
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/styles`, { headers: { Authorization: `${API_KEY}` } })
           .then(styleRes => {
             // create sku array of objects so easier to map through in component
             let skuArray = [];
@@ -54,20 +73,55 @@ class App extends React.Component {
             } else {
               stylePrice = styleRes.data.results[0].original_price;
             }
-
             this.setState({
               products: productRes.data,
               currentProduct: productRes.data[0],
+              currentProductID: productRes.data[0].id,
               styles: styleRes.data.results,
               currentStyle: styleRes.data.results[0],
               image: styleRes.data.results[0].photos[0].url,
               price: stylePrice,
               skus: skuArray
+
+            axios({ //making another request to get the related items array
+              method: 'get',
+              url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/related/`,
+              headers: {
+                'Authorization': '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'
+              }
+            })
+            .then((relatedItemsResponse) => {
+              this.setState({
+                products: productRes.data,
+                currentProduct: productRes.data[0],
+                styles: styleRes.data.results,
+                currentStyle: styleRes.data.results[0],
+                image: styleRes.data.results[0].photos[0].thumbnail_url,
+                price: stylePrice,
+                skus: skuArray,
+                relatedItems: relatedItemsResponse.data
+              })
+
             })
           })
+            .then(() => {
+              this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
       })
       .catch(err => {
         console.log(err);
+      })
+  }
+
+  getCurrentProductQuestionsAndAnswers(currentProductID) {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${currentProductID}`, { headers: { Authorization: API_KEY } })
+      .then((questions) => {
+        this.setState({
+          currentQuestions: questions.data.results
+        })
       })
   }
 
@@ -96,7 +150,7 @@ class App extends React.Component {
   }
 
   updateProduct(product) {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: `${API_KEY}` } })
     .then(styleRes => {
       // create sku array of objects so easier to map through in component
       let skuArray = [];
@@ -117,8 +171,9 @@ class App extends React.Component {
         stylePrice = styleRes.data.results[0].original_price;
       }
 
-      this.setState({
+      this.setState({ //TODO - update relatedItems for Related Items component
         currentProduct: product,
+        currentProductID: styleRes.data.product_id,
         styles: styleRes.data.results,
         currentStyle: styleRes.data.results[0],
         image: styleRes.data.results[0].photos[0].url,
@@ -126,6 +181,12 @@ class App extends React.Component {
         skus: skuArray
       })
     })
+      .then(() => {
+        this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     .catch(err => {
       console.log(err);
     })
@@ -135,17 +196,17 @@ class App extends React.Component {
     console.log(id, size, quantity);
     // send a post request to cart
   }
-
-
+    
   render() {
     return (
       <div>
         <h1>Project Catwalk Hello World !!</h1>
-        <OverviewAnisah />
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
-        <QuestionsAndAnswers currentProduct={this.state.currentProduct}/>
+        <hr></hr>
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions}/>
+        <hr></hr>
         <RatingsAndReviews />
-        <RelatedItems currentProduct={this.state.currentProduct}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
       </div>
     )
   }

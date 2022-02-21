@@ -98,7 +98,6 @@ class OverviewAllie extends React.Component {
       this.props.submitCart(this.state.selectedId, this.state.selectedSize, this.state.selectedQuantity);
     }
 
-
     render() {
         return (
             <div className="overviewContainer">

@@ -11,7 +11,7 @@ class RelatedProductsCarousel extends React.Component {
       relatedProductsIndex: 0,
       relatedProductsWithInfo: [],
       modalVisible: false,
-      modalContents: {text: 'Hello World!'}
+      modalContents: { text: 'Hello World!' }
     }
 
     this.showModal = this.showModal.bind(this)
@@ -47,21 +47,42 @@ class RelatedProductsCarousel extends React.Component {
     })
   }
 
-  buildRelatedItemProperties() {
+  getProductRatings(itemNumber) {
+    return axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${itemNumber}`,
+      headers: {
+        'Authorization': API_KEY
+      }
+    })
+  }
 
+averageProductRatings(ratingsObject) {
+  console.log(ratingsObject.data.results)
+
+  let sumOfRatings = 0;
+  ratingsObject.data.results.forEach(element => {
+    sumOfRatings += element.rating
+  })
+
+  return (sumOfRatings / ratingsObject.data.results.length)
+}
+
+  buildRelatedItemProperties() {
     let accumulatorArray = []
 
     this.props.relatedItems.forEach(element => { //iterate through relatedItems prop
       Promise.all([
         this.getProductInfo(element), //fetch info for this item from the products API
-        this.getProductStyles(element) //fetch info for this item from the styles API
+        this.getProductStyles(element), //fetch info for this item from the styles API
+        this.getProductRatings(element) //fetch info for this item from the ratings API
       ]).then((responseArray) => {   //for now only responseArray[0] has data
         let tempObject = {           //create an object with this item's info
           id: element,
           name: responseArray[0].data.name,
           category: responseArray[0].data.category,
           price: responseArray[0].data.default_price,
-          rating: 5
+          rating: this.averageProductRatings(responseArray[2])
         }
 
         if (responseArray[1].data.results[0].photos[0].thumbnail_url === null) {
@@ -104,36 +125,31 @@ class RelatedProductsCarousel extends React.Component {
   showModal(modalMessage) {
     this.setState({
       modalVisible: !this.state.modalVisible,
-      modalContents: modalMessage})
+      modalContents: modalMessage
+    })
   }
 
   render() {
     return (
       <div id="relatedProductsContainer">
-        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents}/>
+        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents} />
         <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
 
         <div id="buttonLeftRight">
-        <a class="relatedButton" onClick={() => {
+          <a className="relatedButton" onClick={() => {
             this.decrementRelatedProducts()
           }
           }>&#10094; Previous</a>
-          <a class="relatedButton" onClick={() => {
+          <a className="relatedButton" onClick={() => {
             this.incrementRelatedProducts()
           }
           }>Next &#10095;</a>
         </div>
-{/*
-        <a className='prev' onClick={this.previousSlide}>&#10094;</a>
-                        <a className='next' onClick={this.nextSlide}></a> */}
-
-        {/* {console.log('related items:', this.props.relatedItems)}
-        {console.log('this.relatedProductsIndex:', this.state.relatedProductsIndex)} */}
 
         <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 205}px)` }}>
 
           {this.state.relatedProductsWithInfo.map((currentProduct) => (
-            <ItemCard productInfo={currentProduct} key={currentProduct.id} showModal={this.showModal}/>
+            <ItemCard productInfo={currentProduct} key={currentProduct.id} showModal={this.showModal} />
           ))}
         </div>
       </div>

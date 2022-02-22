@@ -104,7 +104,7 @@ class RelatedProductsCarousel extends React.Component {
   showModal(modalMessage) {
     this.setState({
       modalVisible: !this.state.modalVisible,
-      modalContents: {text: modalMessage}})
+      modalContents: modalMessage})
   }
 
   render() {

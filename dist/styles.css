@@ -2,6 +2,54 @@ h1 {
   color: blue;
 }
 
+#comparison-modal {
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+#modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+#modal-body {
+  padding: 2px 16px;
+}
+
+#modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+#modal-content {
+  top: 10%;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
 #buttonLeftRight {
   display: flex;
   flex-direction: row;
@@ -34,108 +82,3 @@ h1 {
 }
 
 /*# sourceMappingURL=styles.css.map */
-
-.overviewContainer {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  grid-template-columns: 10% 50% 30%;
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 0.5em;
-  grid-template-areas:
-  "gallery gallery ratings"
-  "gallery gallery category"
-  "gallery gallery style"
-  "gallery gallery selection"
-  "description description description";
-
-
-}
-
-.gallery {
-  background-color: red;
-  grid-area: gallery;
-}
-
-.main-image {
-  object-fit: cover;
-  height: 450px;
-  width: 350px;
-}
-
-/* attempting slide show */
-.slideshow-container {
-  max-width: 350px;
-  position: relative;
-  margin: auto;
-
-}
-
-.slide {
-  display: none;
-}
-
-.index0 {
-  display: block;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-.ratings {
-  background-color: orange;
-  grid-area: ratings;
-}
-
-.category {
-  background-color: yellow;
-  grid-area: category;
-}
-
-.style {
-  background-color: green;
-  grid-area: style;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-.style-image{
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 5px;
-}
-
-.selection {
-  background-color: blue;
-  grid-area: selection;
-}
-
-.description {
-  background-color: purple;
-  grid-area: description;
-}

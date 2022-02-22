@@ -2,7 +2,7 @@ import React from 'react';
 
 const ItemCard = (props) => (
     <div id="ItemCard" onClick={e => {
-        props.showModal(props.productInfo.name)
+        props.showModal(props.productInfo)
     }}>
         <div>⭐️</div>
         <img src={props.productInfo.picture} width="200" height="200"></img>

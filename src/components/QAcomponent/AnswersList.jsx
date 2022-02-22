@@ -25,22 +25,22 @@ const AnswersList = (props) => {
       {answersArray.map((oneAnswer, i) => {
         if (!showAnswers) {
           if (answersArray.length === 2) {
-            <div>
+            <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
             </div>
           } else if (i < 2) {
             return (
-              <div>
+              <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
-                <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true}/> : <></>}</div>
+                <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true} key={oneAnswer.id}/> : <></>}</div>
               </div>
             )
           }
         } else {
           return (
-            <div>
+            <div key={oneAnswer.id}>
               <div>A: {oneAnswer.body}</div>
               <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
                 <div>{(i === answersArray.length - 1) ? <Button onClick={() => (handleCollapse())}>Collapse Answers</Button> : <></>}
@@ -55,6 +55,7 @@ const AnswersList = (props) => {
 
 export default AnswersList;
 
+// STYLED COMPONENTS
 
 const Button = Styled.button`
   display: inline-block;
@@ -66,4 +67,7 @@ const Button = Styled.button`
   background: transparent;
   color: white;
   border: 2px solid white;
+  &:hover {
+    background-color: lightblue;
+  }
   `

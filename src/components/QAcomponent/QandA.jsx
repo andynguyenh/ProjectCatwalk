@@ -9,13 +9,13 @@ import { API_KEY } from '../../../config.js';
 import Modal from './Modal.jsx'
 
 class QuestionsAndAnswers extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchTerm: ''
-        }
-        this.handleOnChange = this.handleOnChange.bind(this)
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+          searchTerm: ''
+      }
+      this.handleOnChange = this.handleOnChange.bind(this)
+  }
 
   handleOnChange(e) {
     console.log(e.target.value)
@@ -38,7 +38,11 @@ class QuestionsAndAnswers extends React.Component {
 
 export default QuestionsAndAnswers;
 
+// STYLED COMPONENTS
+
 const Header = Styled.h2`
-color: blue;
+color: indigo;
+padding: 20px;
+border: 1px solid green;
 `
 

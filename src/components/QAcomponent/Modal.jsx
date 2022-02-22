@@ -13,66 +13,72 @@ const Modal = (props) => {
 
   if (props.questions) {
     return (
-      <StyledModalApp className="ModalApp">
+      <StyledModalApp>
         {isOpen && (
           <>
-            <StyledOverlay className="overlay"></StyledOverlay>
-            <StyledModal className="modal">
-              <StyledModalHeader className="modal__header">
+            <StyledOverlay ></StyledOverlay>
+            <StyledModal>
+              <StyledModalHeader>
                 <h2>Ask Your Question</h2>
                 <h3>About the {props.currentProduct}</h3>
               </StyledModalHeader>
-              <StyledModalMain className="modal__main">
+              <StyledModalMain>
                 <form>
-                  <label>
+                  <StyledLabel>
                     Your Question:
                     <input type="text" name="name" />
+                    <br></br>
                     Your Nickname:
                     <input type="text" name="name" />
+                    <br></br>
                     Your E-mail:
                     <input type="text" name="name" />
-                  </label>
+                  </StyledLabel>
                 </form>
               </StyledModalMain>
-              <StyledCloseButton onClick={closeModal} className="close-button">Submit Question</StyledCloseButton>
+              <br></br>
+              <StyledCloseButton onClick={closeModal}>Submit Question</StyledCloseButton>
             </StyledModal>
           </>
         )}
 
         {/* <h2>This is H2 for adding answer or question</h2> */}
-        <StyledButton className="button" onClick={openModal}>Add Question</StyledButton>
+        <StyledButton onClick={openModal}>Add Question</StyledButton>
       </StyledModalApp>
     );
   } else {
     return (
-      <StyledModalApp className="ModalApp">
+      <StyledModalApp>
         {isOpen && (
           <>
-            <StyledOverlay className="overlay"></StyledOverlay>
-            <StyledModal className="modal">
-              <StyledModalHeader className="modal__header">
+            <StyledOverlay></StyledOverlay>
+            <StyledModal>
+              <StyledModalHeader>
                 <h2>Submit an Answer</h2>
                 <h3>{props.currentProduct}: {props.currentQuestion}</h3>
               </StyledModalHeader>
-              <StyledModalMain className="modal__main">
+              <StyledModalMain>
                 <form>
-                  <label>
+                  <StyledLabel>
                     Your Answer:
                     <input type="text" name="name" />
+                    <br></br>
                     Your Nickname:
                     <input type="text" name="name" />
+                    <br></br>
                     Your E-mail:
                     <input type="text" name="name" />
-                  </label>
+                  </StyledLabel>
                 </form>
               </StyledModalMain>
-              <StyledCloseButton onClick={closeModal} className="close-button">Submit Answer</StyledCloseButton>
+              <br></br>
+              <StyledCloseButton onClick={closeModal}>Submit Answer</StyledCloseButton>
             </StyledModal>
           </>
         )}
 
         {/* <h2>This is H2 for adding answer or question</h2> */}
-        <StyledButton className="button" onClick={openModal}>Add Answer</StyledButton>
+        <StyledButton onClick={openModal}>Add Answer</StyledButton>
       </StyledModalApp>
     );
   }
@@ -80,6 +86,8 @@ const Modal = (props) => {
 }
 
 export default Modal;
+
+// STYLE COMPONENTS
 
 const StyledModalApp = Styled.div`
   width: 90%;
@@ -106,15 +114,20 @@ const StyledModal = Styled.div`
 `
 const StyledModalHeader = Styled.header`
   background: indigo;
-  padding: 10px 20px;
-  display: flex;
+  padding: 20px 20px;
+  display: block;
   justify-content: space-between;
 `
 const StyledModalMain = Styled.main`
   padding: 20px;
 `
+const StyledLabel = Styled.label`
+  display: block;
+  white-space: pre-wrap;
+  float: left;
+`
 const StyledCloseButton = Styled.button`
-  display: inline-block;
+  display: block;
   border-radius: 3px;
   cursor: pointer;
   padding: 0.5rem 0;
@@ -123,9 +136,13 @@ const StyledCloseButton = Styled.button`
   background: transparent;
   color: white;
   border: 2px solid white;
+  float: right;
+  &:hover {
+    background-color: lightblue;
+  }
 `
 const StyledButton = Styled.button`
-  display: inline-block;
+  display: block;
   border-radius: 3px;
   cursor: pointer;
   padding: 0.5rem 0;
@@ -134,4 +151,7 @@ const StyledButton = Styled.button`
   background: transparent;
   color: white;
   border: 2px solid white;
+  &:hover {
+    background-color: lightblue;
+  }
 `

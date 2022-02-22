@@ -27,6 +27,7 @@ const LoadMore = (props) => {
 
 export default LoadMore;
 
+// STYLED COMPONENTS
 
 const Button = Styled.button`
   display: inline-block;
@@ -38,4 +39,7 @@ const Button = Styled.button`
   background: transparent;
   color: white;
   border: 2px solid white;
+  &:hover {
+    background-color: lightblue;
+  }
   `

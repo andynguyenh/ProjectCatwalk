@@ -82,7 +82,7 @@ class App extends React.Component {
               image: styleRes.data.results[0].photos[0].url,
               price: stylePrice,
               skus: skuArray
-
+            })
             axios({ //making another request to get the related items array
               method: 'get',
               url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/related/`,
@@ -171,6 +171,7 @@ class App extends React.Component {
         stylePrice = styleRes.data.results[0].original_price;
       }
 
+
       this.setState({ //TODO - update relatedItems for Related Items component
         currentProduct: product,
         currentProductID: styleRes.data.product_id,
@@ -180,8 +181,19 @@ class App extends React.Component {
         price: stylePrice,
         skus: skuArray
       })
-    })
-      .then(() => {
+
+      axios({ //making another request to get the related items array
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/related/`,
+        headers: {
+          'Authorization': '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'
+        }
+      }).then( (relatedItemsResponse) => {
+        this.setState({
+          relatedItems: relatedItemsResponse.data
+        })
+      })
+    }).then(() => {
         this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
       })
       .catch((err) => {
@@ -196,7 +208,7 @@ class App extends React.Component {
     console.log(id, size, quantity);
     // send a post request to cart
   }
-    
+
   render() {
     return (
       <div>

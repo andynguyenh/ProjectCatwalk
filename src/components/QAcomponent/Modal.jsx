@@ -133,7 +133,7 @@ const StyledCloseButton = Styled.button`
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
-  background: transparent;
+  background: black;
   color: white;
   border: 2px solid white;
   float: right;
@@ -148,8 +148,8 @@ const StyledButton = Styled.button`
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
-  background: transparent;
   color: white;
+  background: black;
   border: 2px solid white;
   &:hover {
     background-color: lightblue;

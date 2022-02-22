@@ -123,7 +123,10 @@ class OverviewAllie extends React.Component {
                     <div><b>Category</b></div>
                     <div>{this.props.currentProduct.name}</div>
                     <div>{this.props.currentStyle.name}</div>
-                    <div>${this.props.price}</div>
+                    {this.props.currentStyle.sale_price
+                    ? <div className="sale-price">${this.props.currentStyle.sale_price} <s>{this.props.currentStyle.original_price}</s></div>
+                    : <div>${this.props.currentStyle.original_price}</div>
+                    }
                     <div><b>Style > </b>{this.props.currentStyle.name}</div>
                 </div>
                 <div className="style">

@@ -33,3 +33,113 @@ flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
+
+.overviewContainer {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 10% 50% 30%;
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 0.5em;
+  grid-template-areas:
+  "gallery gallery ratings"
+  "gallery gallery category"
+  "gallery gallery style"
+  "gallery gallery selection"
+  "description description description";
+
+
+}
+
+.gallery {
+  background-color: red;
+  grid-area: gallery;
+}
+
+.main-image {
+  object-fit: cover;
+  height: 450px;
+  width: 350px;
+}
+
+/* attempting slide show */
+.slideshow-container {
+  max-width: 350px;
+  position: relative;
+  margin: auto;
+
+}
+
+.slide {
+  display: none;
+}
+
+.index0 {
+  display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.ratings {
+  background-color: orange;
+  grid-area: ratings;
+}
+
+.category {
+  background-color: yellow;
+  grid-area: category;
+}
+
+.sale-price {
+  color: red;
+}
+
+
+.style {
+  background-color: green;
+  grid-area: style;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.style-image{
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.selection {
+  background-color: blue;
+  grid-area: selection;
+}
+
+.description {
+  background-color: purple;
+  grid-area: description;
+}

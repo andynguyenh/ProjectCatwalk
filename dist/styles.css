@@ -33,8 +33,6 @@ h1 {
   justify-content: flex-start;
 }
 
-/*# sourceMappingURL=styles.css.map */
-
 .overviewContainer {
   width: 960px;
   margin-left: auto;
@@ -43,14 +41,7 @@ h1 {
   grid-template-columns: 10% 50% 30%;
   grid-template-rows: repeat(5, 1fr);
   grid-gap: 0.5em;
-  grid-template-areas:
-  "gallery gallery ratings"
-  "gallery gallery category"
-  "gallery gallery style"
-  "gallery gallery selection"
-  "description description description";
-
-
+  grid-template-areas: "gallery gallery ratings" "gallery gallery category" "gallery gallery style" "gallery gallery selection" "description description description";
 }
 
 .gallery {
@@ -69,7 +60,6 @@ h1 {
   max-width: 350px;
   position: relative;
   margin: auto;
-
 }
 
 .slide {
@@ -102,7 +92,7 @@ h1 {
 }
 
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .ratings {
@@ -115,6 +105,10 @@ h1 {
   grid-area: category;
 }
 
+.sale-price {
+  color: red;
+}
+
 .style {
   background-color: green;
   grid-area: style;
@@ -124,7 +118,8 @@ h1 {
   justify-content: flex-start;
   overflow: hidden;
 }
-.style-image{
+
+.style-image {
   object-fit: cover;
   border-radius: 50%;
   margin: 5px;
@@ -139,3 +134,5 @@ h1 {
   background-color: purple;
   grid-area: description;
 }
+
+/*# sourceMappingURL=styles.css.map */

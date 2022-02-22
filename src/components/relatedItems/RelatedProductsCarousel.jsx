@@ -109,25 +109,28 @@ class RelatedProductsCarousel extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="relatedProductsContainer">
         <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents}/>
         <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
 
         <div id="buttonLeftRight">
-          <button onClick={() => {
+        <a class="relatedButton" onClick={() => {
             this.decrementRelatedProducts()
           }
-          }>Previous</button>
-          <button onClick={() => {
+          }>&#10094; Previous</a>
+          <a class="relatedButton" onClick={() => {
             this.incrementRelatedProducts()
           }
-          }>Next</button>
+          }>Next &#10095;</a>
         </div>
+{/*
+        <a className='prev' onClick={this.previousSlide}>&#10094;</a>
+                        <a className='next' onClick={this.nextSlide}></a> */}
 
         {/* {console.log('related items:', this.props.relatedItems)}
         {console.log('this.relatedProductsIndex:', this.state.relatedProductsIndex)} */}
 
-        <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 203}px)` }}>
+        <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 205}px)` }}>
 
           {this.state.relatedProductsWithInfo.map((currentProduct) => (
             <ItemCard productInfo={currentProduct} key={currentProduct.id} showModal={this.showModal}/>

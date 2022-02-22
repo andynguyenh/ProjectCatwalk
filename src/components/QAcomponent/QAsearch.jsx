@@ -22,6 +22,7 @@ export default QASearchBar;
 
 const Input = Styled.input`
   width: 80%;
+  border: 1px solid green;
 `
 
 const SearchForm = Styled.form`
@@ -31,10 +32,14 @@ const SearchForm = Styled.form`
 const Button = Styled.button`
   display: inline-block;
   border-radius: 3px;
+  cursor: pointer;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
   background: transparent;
   color: white;
   border: 2px solid white;
+  &:hover {
+    background-color: lightblue;
+  }
   `

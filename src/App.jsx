@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { API_KEY } from '../config.js';
 import OverviewAllie from './components/productDetailsAllie/overviewAllie.jsx';
-import QuestionsAndAnswers from './components/questionsAndAnswers/questionsAndAnswers.jsx';
+import QuestionsAndAnswers from './components/QAcomponent/QandA.jsx';
 import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.jsx';
-import QuestionsList from './components/questionsAndAnswers/questionslist.jsx'
-import QASearchBar from './components/questionsAndAnswers//qaSearchBar.jsx'
+import QuestionsList from './components/QAcomponent/Questionslist.jsx'
+import QASearchBar from './components/QAcomponent//QAsearch.jsx'
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
 
 
@@ -85,7 +85,6 @@ class App extends React.Component {
               originalPrice: styleRes.data.results[0].original_price,
               skus: skuArray
             })
-
             axios({ //making another request to get the related items array
               method: 'get',
               url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/related/`,
@@ -175,6 +174,7 @@ class App extends React.Component {
         stylePrice = styleRes.data.results[0].original_price;
       }
 
+
       this.setState({ //TODO - update relatedItems for Related Items component
         currentProduct: product,
         currentProductID: styleRes.data.product_id,
@@ -185,8 +185,19 @@ class App extends React.Component {
         originalPrice: styleRes.data.results[0].original_price,
         skus: skuArray
       })
-    })
-      .then(() => {
+
+      axios({ //making another request to get the related items array
+        method: 'get',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/related/`,
+        headers: {
+          'Authorization': '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'
+        }
+      }).then( (relatedItemsResponse) => {
+        this.setState({
+          relatedItems: relatedItemsResponse.data
+        })
+      })
+    }).then(() => {
         this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
       })
       .catch((err) => {
@@ -208,7 +219,7 @@ class App extends React.Component {
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
         <hr></hr>
-        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions}/>
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct}/>
         <hr></hr>
         <RatingsAndReviews />
         <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>

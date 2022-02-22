@@ -2,10 +2,61 @@ h1 {
   color: blue;
 }
 
+#comparison-modal {
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+#modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+#modal-body {
+  padding: 2px 16px;
+}
+
+#modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+#modal-content {
+  top: 10%;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
 #buttonLeftRight {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: auto;
+  align-items: center;
 }
 
 #RelatedProductsCarousel {
@@ -17,9 +68,13 @@ h1 {
 
 #ItemCard {
   border: solid;
-  background-color: gray;
+  background-color: #d7d7d7;
   display: inline-flex;
   flex-direction: column;
+}
+
+#actionButton {
+  cursor: pointer;
 }
 
 #YourOutfitContainer {
@@ -33,7 +88,14 @@ h1 {
   justify-content: flex-start;
 }
 
-/*# sourceMappingURL=styles.css.map */
+#relatedProductsContainer {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  background-color: #fefefe;
+  border: dotted;
+}
 
 .overviewContainer {
   width: 960px;
@@ -43,14 +105,7 @@ h1 {
   grid-template-columns: 10% 50% 30%;
   grid-template-rows: repeat(5, 1fr);
   grid-gap: 0.5em;
-  grid-template-areas:
-  "gallery gallery ratings"
-  "gallery gallery category"
-  "gallery gallery style"
-  "gallery gallery selection"
-  "description description description";
-
-
+  grid-template-areas: "gallery gallery ratings" "gallery gallery category" "gallery gallery style" "gallery gallery selection" "description description description";
 }
 
 .gallery {
@@ -69,7 +124,6 @@ h1 {
   max-width: 350px;
   position: relative;
   margin: auto;
-
 }
 
 .slide {
@@ -102,7 +156,7 @@ h1 {
 }
 
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .ratings {
@@ -124,7 +178,8 @@ h1 {
   justify-content: flex-start;
   overflow: hidden;
 }
-.style-image{
+
+.style-image {
   object-fit: cover;
   border-radius: 50%;
   margin: 5px;
@@ -139,3 +194,5 @@ h1 {
   background-color: purple;
   grid-area: description;
 }
+
+/*# sourceMappingURL=styles.css.map */

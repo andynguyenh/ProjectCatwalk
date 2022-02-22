@@ -102,6 +102,7 @@ flex-direction: column;
   "gallery gallery style"
   "gallery gallery selection"
   "description description description";
+
 }
 
 .gallery {
@@ -164,6 +165,11 @@ flex-direction: column;
 .category {
   background-color: yellow;
   grid-area: category;
+}
+
+
+.sale-price {
+  color: red;
 }
 
 .style {

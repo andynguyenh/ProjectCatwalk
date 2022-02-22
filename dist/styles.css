@@ -97,6 +97,7 @@ h1 {
   border: dotted;
 }
 
+
 .overviewContainer {
   width: 960px;
   margin-left: auto;
@@ -167,6 +168,10 @@ h1 {
 .category {
   background-color: yellow;
   grid-area: category;
+}
+
+.sale-price {
+  color: red;
 }
 
 .style {

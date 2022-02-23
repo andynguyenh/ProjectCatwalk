@@ -238,7 +238,6 @@ class App extends React.Component {
 
   setAverageRatingOfCurrentProduct(itemNumber) {
     this.getProductRatings(itemNumber).then(response => {
-      console.log ( this.averageProductRatings(response) )
       this.setState( {
         currentItemRating: this.averageProductRatings(response)
       })
@@ -248,7 +247,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {console.log('check it out buddy!', this.state)}
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} />
         <hr></hr>

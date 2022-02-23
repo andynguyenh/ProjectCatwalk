@@ -8,6 +8,7 @@ import axios from 'axios';
 import { API_KEY } from '../../../config.js';
 import Modal from './Modal.jsx'
 
+
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
       super(props);
@@ -29,7 +30,7 @@ class QuestionsAndAnswers extends React.Component {
         <div>
           <Header>Questions and Answers</Header>
           <QASearchBar searchOnChange={this.handleOnChange}/>
-          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
+          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} updateHelpful={this.props.updateHelpful} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
           <Modal questions={true} currentProduct={this.props.currentProduct.name}/>
         </div>
     )

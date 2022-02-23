@@ -20,7 +20,7 @@ const LoadMore = (props) => {
     }
   }
 
-  return(
+  return (
     <Button onClick={() => (handleClick())}>Show more {type}</Button>
   )
 }
@@ -42,4 +42,4 @@ const Button = Styled.button`
   &:hover {
     background-color: lightblue;
   }
-  `
+`

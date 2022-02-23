@@ -15,7 +15,6 @@ const QASearchBar = (props) => {
     )
   }
 
-
 export default QASearchBar;
 
 // STYLED COMPONENTS
@@ -28,7 +27,6 @@ const Input = Styled.input`
 const SearchForm = Styled.form`
   width: 100%;
 `
-
 const Button = Styled.button`
   display: inline-block;
   border-radius: 3px;
@@ -36,10 +34,10 @@ const Button = Styled.button`
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
-  background: transparent;
+  background: black;
   color: white;
   border: 2px solid white;
   &:hover {
     background-color: lightblue;
   }
-  `
+`

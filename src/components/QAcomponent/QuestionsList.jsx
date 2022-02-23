@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AnswersList from './AnswersList.jsx'
 import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
+import HelpfulAndReport from './Helpful.jsx'
 
 const QuestionsList = (props) => {
   const [showQuestions, setShowQuestions] = useState(false);
@@ -26,10 +27,12 @@ const QuestionsList = (props) => {
                 return (
                   <div key={oneQuestion.question_id}>
                     <div>Q: {oneQuestion.question_body}</div>
+                      <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful}/>
+                      <HelpfulAndReport />
                       <AnswersList  question={oneQuestion} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
                       <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
-                      <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
-                      </div>
+                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                      </div>)}
                     </div>
                 )
               }

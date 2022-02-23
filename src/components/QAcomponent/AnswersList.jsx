@@ -4,10 +4,8 @@ import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
 import Styled from 'styled-components'
 
-
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
-  // const [helpful, setHelpful] = useState()
   var answers = props.question.answers;
   var answersArray = [];
   var answerKeys = Object.keys(answers)

@@ -42,7 +42,6 @@ const Modal = (props) => {
           </>
         )}
 
-        {/* <h2>This is H2 for adding answer or question</h2> */}
         <StyledButton onClick={openModal}>Add Question</StyledButton>
       </StyledModalApp>
     );

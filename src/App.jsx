@@ -25,7 +25,8 @@ class App extends React.Component {
       orginalPrice: '',
       skus: [],
       relatedItems: [],
-      relatedItemsData: []
+      relatedItemsData: [],
+      currentItemRating: 0
     }
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
@@ -42,13 +43,13 @@ class App extends React.Component {
   //input: array of item numbers related to the current item
   //create array relatedItemsData
   //for each of those items
-    //make a new object inside the results array
-    //make request to Products API
-      //take name, category, and price from this request and add key/value pairs to the current object
-    //make request to reviews API for star rating
-      //calculate the average rating
-      //add rating key/value pair to the object
-    //push the object onto relatedItemsData
+  //make a new object inside the results array
+  //make request to Products API
+  //take name, category, and price from this request and add key/value pairs to the current object
+  //make request to reviews API for star rating
+  //calculate the average rating
+  //add rating key/value pair to the object
+  //push the object onto relatedItemsData
 
 
   getProducts() {
@@ -74,6 +75,7 @@ class App extends React.Component {
             } else {
               stylePrice = styleRes.data.results[0].original_price;
             }
+           this.setAverageRatingOfCurrentProduct(productRes.data[0].id)
             this.setState({
               products: productRes.data,
               currentProduct: productRes.data[0],
@@ -92,26 +94,26 @@ class App extends React.Component {
                 'Authorization': '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'
               }
             })
-            .then((relatedItemsResponse) => {
-              this.setState({
-                products: productRes.data,
-                currentProduct: productRes.data[0],
-                styles: styleRes.data.results,
-                currentStyle: styleRes.data.results[0],
-                image: styleRes.data.results[0].photos[0].thumbnail_url,
-                price: stylePrice,
-                skus: skuArray,
-                relatedItems: relatedItemsResponse.data
-              })
+              .then((relatedItemsResponse) => {
+                this.setState({
+                  products: productRes.data,
+                  currentProduct: productRes.data[0],
+                  styles: styleRes.data.results,
+                  currentStyle: styleRes.data.results[0],
+                  image: styleRes.data.results[0].photos[0].thumbnail_url,
+                  price: stylePrice,
+                  skus: skuArray,
+                  relatedItems: relatedItemsResponse.data
+                })
 
-            })
+              })
           })
-            .then(() => {
-              this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+          .then(() => {
+            this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       })
       .catch(err => {
         console.log(err);
@@ -154,58 +156,58 @@ class App extends React.Component {
 
   updateProduct(product) {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: `${API_KEY}` } })
-    .then(styleRes => {
-      // create sku array of objects so easier to map through in component
-      let skuArray = [];
-      let allSkus = styleRes.data.results[0].skus;
-      for (let key in allSkus) {
-        let skuObj = {};
-        skuObj.id = key;
-        skuObj.quantity = allSkus[key].quantity;
-        skuObj.size = allSkus[key].size;
-        skuArray.push(skuObj);
-      }
-
-      // check for sale price otherwise default price
-      let stylePrice;
-      if (styleRes.data.results[0].sale_price !== null) {
-        stylePrice = styleRes.data.results[0].sale_price;
-      } else {
-        stylePrice = styleRes.data.results[0].original_price;
-      }
-
-
-      this.setState({ //TODO - update relatedItems for Related Items component
-        currentProduct: product,
-        currentProductID: styleRes.data.product_id,
-        styles: styleRes.data.results,
-        currentStyle: styleRes.data.results[0],
-        image: styleRes.data.results[0].photos[0].url,
-        price: stylePrice,
-        originalPrice: styleRes.data.results[0].original_price,
-        skus: skuArray
-      })
-
-      axios({ //making another request to get the related items array
-        method: 'get',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/related/`,
-        headers: {
-          'Authorization': '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'
+      .then(styleRes => {
+        // create sku array of objects so easier to map through in component
+        let skuArray = [];
+        let allSkus = styleRes.data.results[0].skus;
+        for (let key in allSkus) {
+          let skuObj = {};
+          skuObj.id = key;
+          skuObj.quantity = allSkus[key].quantity;
+          skuObj.size = allSkus[key].size;
+          skuArray.push(skuObj);
         }
-      }).then( (relatedItemsResponse) => {
-        this.setState({
-          relatedItems: relatedItemsResponse.data
+
+        // check for sale price otherwise default price
+        let stylePrice;
+        if (styleRes.data.results[0].sale_price !== null) {
+          stylePrice = styleRes.data.results[0].sale_price;
+        } else {
+          stylePrice = styleRes.data.results[0].original_price;
+        }
+
+
+        this.setState({ //TODO - update relatedItems for Related Items component
+          currentProduct: product,
+          currentProductID: styleRes.data.product_id,
+          styles: styleRes.data.results,
+          currentStyle: styleRes.data.results[0],
+          image: styleRes.data.results[0].photos[0].url,
+          price: stylePrice,
+          originalPrice: styleRes.data.results[0].original_price,
+          skus: skuArray
         })
-      })
-    }).then(() => {
+
+        axios({ //making another request to get the related items array
+          method: 'get',
+          url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/related/`,
+          headers: {
+            'Authorization': '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'
+          }
+        }).then((relatedItemsResponse) => {
+          this.setState({
+            relatedItems: relatedItemsResponse.data
+          })
+        })
+      }).then(() => {
         this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
       })
       .catch((err) => {
         console.log(err)
       })
-    .catch(err => {
-      console.log(err);
-    })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   submitCart(id, size, quantity) {
@@ -213,16 +215,47 @@ class App extends React.Component {
     // send a post request to cart
   }
 
+  getProductRatings(itemNumber) {
+    return axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${itemNumber}`,
+      headers: {
+        'Authorization': API_KEY
+      }
+    })
+  }
+
+  averageProductRatings(ratingsObject) {
+
+    let sumOfRatings = 0;
+    ratingsObject.data.results.forEach(element => {
+      sumOfRatings += element.rating
+    })
+
+    return (sumOfRatings / ratingsObject.data.results.length)
+  }
+
+
+  setAverageRatingOfCurrentProduct(itemNumber) {
+    this.getProductRatings(itemNumber).then(response => {
+      console.log ( this.averageProductRatings(response) )
+      this.setState( {
+        currentItemRating: this.averageProductRatings(response)
+      })
+    })
+  }
+
   render() {
     return (
       <div>
+        {console.log('check it out buddy!', this.state)}
         <h1>Project Catwalk Hello World !!</h1>
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} />
         <hr></hr>
-        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct}/>
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} />
         <hr></hr>
         <RatingsAndReviews />
-        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} />
       </div>
     )
   }

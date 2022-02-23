@@ -58,7 +58,6 @@ class RelatedProductsCarousel extends React.Component {
   }
 
 averageProductRatings(ratingsObject) {
-  console.log(ratingsObject.data.results)
 
   let sumOfRatings = 0;
   ratingsObject.data.results.forEach(element => {
@@ -73,10 +72,10 @@ averageProductRatings(ratingsObject) {
 
     this.props.relatedItems.forEach(element => { //iterate through relatedItems prop
       Promise.all([
-        this.getProductInfo(element), //fetch info for this item from the products API
+        this.getProductInfo(element),   //fetch info for this item from the products API
         this.getProductStyles(element), //fetch info for this item from the styles API
         this.getProductRatings(element) //fetch info for this item from the ratings API
-      ]).then((responseArray) => {   //for now only responseArray[0] has data
+      ]).then((responseArray) => {
         let tempObject = {           //create an object with this item's info
           id: element,
           name: responseArray[0].data.name,
@@ -85,13 +84,14 @@ averageProductRatings(ratingsObject) {
           rating: this.averageProductRatings(responseArray[2])
         }
 
+        //use a default placeholder image if none is available from the API
         if (responseArray[1].data.results[0].photos[0].thumbnail_url === null) {
           tempObject.picture = `https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png`
         } else {
           tempObject.picture = responseArray[1].data.results[0].photos[0].thumbnail_url
         }
 
-        accumulatorArray.push(tempObject) //& push on accumulator
+        accumulatorArray.push(tempObject) // push current item's info onto the accumulator
       }).then(() => {
         this.setState({
           relatedProductsWithInfo: accumulatorArray

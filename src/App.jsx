@@ -128,8 +128,8 @@ class App extends React.Component {
       })
   }
 
-  updateHelpfulAndReport (currentQuestion_id) {
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${currentQuestion_id}/helpful`, undefined, {
+  updateHelpfulAndReport (QorA, currentQuestion_id, endpoint) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/${QorA}/${currentQuestion_id}/${endpoint}`, undefined, {
       headers: {Authorization: API_KEY}
     })
   }

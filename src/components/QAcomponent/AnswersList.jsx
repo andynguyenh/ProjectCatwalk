@@ -3,6 +3,7 @@ import dateFormat from 'dateformat'
 import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
 import Styled from 'styled-components'
+import HelpfulAndReport from './Helpful.jsx'
 
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
@@ -26,12 +27,16 @@ const AnswersList = (props) => {
             <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
+                  <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                  <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
             </div>
           } else if (i < 2) {
             return (
               <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
+                  <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                  <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
                 <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true} key={oneAnswer.id}/> : <></>}</div>
               </div>
             )
@@ -41,6 +46,8 @@ const AnswersList = (props) => {
             <div key={oneAnswer.id}>
               <div>A: {oneAnswer.body}</div>
               <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
+                <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
                 <div>{(i === answersArray.length - 1) ? <Button onClick={() => (handleCollapse())}>Collapse Answers</Button> : <></>}
               </div>
             </div>

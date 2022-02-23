@@ -19,7 +19,6 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   handleOnChange(e) {
-    console.log(e.target.value)
     this.setState({
       searchTerm: e.target.value
     })
@@ -47,3 +46,4 @@ padding: 20px;
 border: 1px solid green;
 `
 
+// https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/543286/answers

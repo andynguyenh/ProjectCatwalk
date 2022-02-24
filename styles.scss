@@ -2,7 +2,18 @@ h1 {
   color: blue;
 }
 
+.star-rating {
+  display: flex;
+  justify-content: center;
+}
+
+.c-star {
+  fill: hotpink;
+  }
+
+
 #comparison-modal {
+  box-shadow: 10px 5px 5px black;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -195,4 +206,5 @@ flex-direction: column;
 .description {
   background-color: purple;
   grid-area: description;
+  color: rgb(255, 105, 180)
 }

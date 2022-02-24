@@ -3,6 +3,7 @@ var axios = require('axios');
 import ItemCard from './ItemCard.jsx'
 import { API_KEY } from '../../../config.js';
 import ProductComparisonModal from './ProductComparisonModal.jsx'
+import StarRating from '../StarRating.jsx'
 
 class RelatedProductsCarousel extends React.Component {
   constructor(props) {
@@ -57,15 +58,15 @@ class RelatedProductsCarousel extends React.Component {
     })
   }
 
-averageProductRatings(ratingsObject) {
+  averageProductRatings(ratingsObject) {
 
-  let sumOfRatings = 0;
-  ratingsObject.data.results.forEach(element => {
-    sumOfRatings += element.rating
-  })
+    let sumOfRatings = 0;
+    ratingsObject.data.results.forEach(element => {
+      sumOfRatings += element.rating
+    })
 
-  return (sumOfRatings / ratingsObject.data.results.length)
-}
+    return (sumOfRatings / ratingsObject.data.results.length)
+  }
 
   buildRelatedItemProperties() {
     let accumulatorArray = []
@@ -132,6 +133,7 @@ averageProductRatings(ratingsObject) {
   render() {
     return (
       <div id="relatedProductsContainer">
+        <StarRating size={32} rating={3.5}/>
         <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents} />
         <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
 
@@ -145,7 +147,6 @@ averageProductRatings(ratingsObject) {
           }
           }>Next &#10095;</a>
         </div>
-
         <div id="RelatedProductsCarousel" style={{ transform: `translateX(-${this.state.relatedProductsIndex * 205}px)` }}>
 
           {this.state.relatedProductsWithInfo.map((currentProduct) => (

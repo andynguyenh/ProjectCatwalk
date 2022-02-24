@@ -29,8 +29,8 @@ class QuestionsAndAnswers extends React.Component {
         <div>
           <Header>Questions and Answers</Header>
           <QASearchBar searchOnChange={this.handleOnChange}/>
-          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} updateHelpful={this.props.updateHelpful} addQorA={this.props.addQorA} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
-          <Modal questions={true} currentProduct={this.props.currentProduct.name} addQorA={this.props.addQorA}/>
+          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} currentProduct_id={this.props.currentProduct.id} updateHelpful={this.props.updateHelpful} addQorA={this.props.addQorA} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
+          <Modal questions={true} currentProduct={this.props.currentProduct.name} currentProduct_id={this.props.currentProduct.id} addQorA={this.props.addQorA}/>
         </div>
     )
   }

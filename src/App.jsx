@@ -136,10 +136,16 @@ class App extends React.Component {
   }
 
   addQuestionOrAnswer (QorA_id, endpoint, body) {
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${QorA_id}/${endpoint}`, undefined, {
-      body: {body}
-    })
+    console.log(body)
+    if (endpoint !== 'answers') {
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`, body,{headers: {Authorization: API_KEY}})
+        .then(() => {
+          console.log('success')
+        })
+    }
   }
+
+  //axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${QorA_id}/${endpoint}`
 
   updateStyle(style) {
     let stylePrice;

@@ -4,17 +4,21 @@ import { useForm } from 'react-hook-form'
 
 const Modal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
-
-
-  const {register, handleSubmit, formState: { errors } } = useForm(
-
-  )
+  const {register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = (data) => {
+    const body = {
+      body: data.question,
+      name: data.username,
+      email: data.email,
+      product_id: props.currentProduct_id
+    }
+    console.log(props)
+    console.log('body in modal', body)
     console.log('data', data)
-    if (props.answers) {
-      props.addQorA()
+    if (!props.answers) {
+      console.log('this works in modal')
+      props.addQorA(props.currentProduct_id, null, body)
 
     }
     closeModal()

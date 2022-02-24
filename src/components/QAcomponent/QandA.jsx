@@ -29,8 +29,8 @@ class QuestionsAndAnswers extends React.Component {
         <div>
           <Header>Questions and Answers</Header>
           <QASearchBar searchOnChange={this.handleOnChange}/>
-          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} updateHelpful={this.props.updateHelpful} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
-          <Modal questions={true} currentProduct={this.props.currentProduct.name}/>
+          <QuestionsList questions={this.props.currentQuestions} currentProduct={this.props.currentProduct.name} updateHelpful={this.props.updateHelpful} addQorA={this.props.addQorA} searchTerm={this.state.searchTerm.length >= 3 ? this.state.searchTerm : ''}/>
+          <Modal questions={true} currentProduct={this.props.currentProduct.name} addQorA={this.props.addQorA}/>
         </div>
     )
   }
@@ -45,5 +45,3 @@ color: indigo;
 padding: 20px;
 border: 1px solid green;
 `
-
-// https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/543286/answers

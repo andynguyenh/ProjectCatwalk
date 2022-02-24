@@ -30,7 +30,7 @@ const QuestionsList = (props) => {
                       <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                       <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                       <AnswersList  question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
+                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
                       {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
                       </div>)}
                     </div>
@@ -43,7 +43,7 @@ const QuestionsList = (props) => {
                     <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                     <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                     <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id}/>
-                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
+                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
                     <div>{(i === (count - 1)) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const QuestionsList = (props) => {
                     <div>Q: {oneQuestion.question_body}</div>
                       <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                       <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                      <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                      <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} addQorA={this.props.addQorA} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
                       <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
                       <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
                       </div>
@@ -89,7 +89,7 @@ const QuestionsList = (props) => {
                     <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                     <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                     <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} key={i}/>
-                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
+                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={this.props.addQorA} answers={true} key={i}/>
                     <div>{(i === (count - 1)) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
                     </div>
                 </div>

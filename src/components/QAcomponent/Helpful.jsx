@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import Styled from 'styled-components';
-
 
 const HelpfulAndReport = (props) => {
   const [helpful, setHelpful] = useState(props.helpfulness)
   const [reported, setReported] = useState(false)
+  const [clickedHelpful, setClickedHelpful] = useState(false)
   let type = ''
 
   useEffect(() => {
@@ -41,14 +42,24 @@ const HelpfulAndReport = (props) => {
   }
 
   if (props.questionOrAnswer === 'question') {
-    if (type === 'Helpful?') {
+    if (type === 'Helpful?' && !clickedHelpful) {
       return (
         <div>
           <div>{type}</div>
           <Button onClick={() => {
             handleHelpfulAndReportClick()
+            setClickedHelpful(true)
             setHelpful(helpful + 1)
-          }}>Yes {helpful}</Button>
+          }}>Yes</Button>
+          <div>({helpful})</div>
+        </div>
+      )
+    } else if (type === 'Helpful?' && clickedHelpful) {
+      return (
+        <div>
+          <div>Helpful?</div>
+          <div>Yes</div>
+          <div>({helpful})</div>
         </div>
       )
     } else if (type === 'Reported') {
@@ -62,6 +73,7 @@ const HelpfulAndReport = (props) => {
         <div>
           <Button onClick={() => {
             handleHelpfulAndReportClick()
+            setClickedHelpful(true)
             setReported(true)
           }}>{(!reported) ? <Button>{type}</Button> : <Reported>Reported</Reported>}
           </Button>
@@ -69,14 +81,24 @@ const HelpfulAndReport = (props) => {
       )
     }
   } else {
-    if (type === 'Helpful?') {
+    if (type === 'Helpful?' && !clickedHelpful) {
       return (
         <div>
           <div>{type}</div>
           <Button onClick={() => {
             handleHelpfulAndReportClick()
+            setClickedHelpful(true)
             setHelpful(helpful + 1)
-          }}>Yes {helpful}</Button>
+          }}>Yes</Button>
+          <div>({helpful})</div>
+        </div>
+      )
+    } else if (type === 'Helpful?' && clickedHelpful) {
+      return (
+        <div>
+          <div>Helpful?</div>
+          <div>Yes</div>
+          <div>({helpful})</div>
         </div>
       )
     } else if (type === 'Reported') {

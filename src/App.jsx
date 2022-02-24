@@ -33,6 +33,7 @@ class App extends React.Component {
     this.submitCart = this.submitCart.bind(this);
     this.getCurrentProductQuestionsAndAnswers = this.getCurrentProductQuestionsAndAnswers.bind(this);
     this.updateHelpfulAndReport = this.updateHelpfulAndReport.bind(this)
+    this.addQuestionOrAnswer = this.addQuestionOrAnswer.bind(this)
   }
 
   componentDidMount() {
@@ -134,6 +135,12 @@ class App extends React.Component {
     })
   }
 
+  addQuestionOrAnswer (QorA_id, endpoint, body) {
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${QorA_id}/${endpoint}`, undefined, {
+      body: {body}
+    })
+  }
+
   updateStyle(style) {
     let stylePrice;
     if (style.sale_price !== null) {
@@ -226,7 +233,7 @@ class App extends React.Component {
         <h1>Project Catwalk Hello World !!</h1>
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
         <hr></hr>
-        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} />
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
         <hr></hr>
         <RatingsAndReviews />
         <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>

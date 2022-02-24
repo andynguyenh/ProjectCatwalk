@@ -22,35 +22,37 @@ const QuestionsList = (props) => {
   if (props.searchTerm === '') {
     return (
       <div>
-          {props.questions.map((oneQuestion, i) => {
-            if (!showQuestions) {
-              if (i < count) {
-                return (
-                  <div key={oneQuestion.question_id}>
-                    <div>Q: {oneQuestion.question_body}</div>
-                      <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                      <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
-                      <AnswersList  question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
-                      </div>)}
-                    </div>
-                )
-              }
-            } else {
+        {props.questions.map((oneQuestion, i) => {
+          if (!showQuestions) {
+            if (i < count) {
               return (
                 <div key={oneQuestion.question_id}>
                   <div>Q: {oneQuestion.question_body}</div>
                     <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                     <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
+                    <Modal currentQuestion={oneQuestion.question_body} currentQuestion_id={oneQuestion.question_id} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
+                    <AnswersList  question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
+                    {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                    </div>)}
+                  </div>
+              )
+            }
+          } else {
+            if (i < count) {
+              return (
+                <div key={oneQuestion.question_id}>
+                  <div>Q: {oneQuestion.question_body}</div>
+                    <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
+                    <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
+                    <Modal currentQuestion={oneQuestion.question_body} currentQuestion_id={oneQuestion.question_id} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
                     <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id}/>
-                    <div>{(i >= props.questions.length && i === (count - 1)) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
+                    <div>{(i < props.questions.length && i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
                     </div>
                 </div>
               )
             }
-          })}
+          }
+        })}
       </div>
     )
   } else {
@@ -76,17 +78,19 @@ const QuestionsList = (props) => {
                 )
               }
             } else {
-              return (
-                <div key={oneQuestion.question_id}>
-                  <div>Q: {oneQuestion.question_body}</div>
-                    <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                    <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
-                    <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
-                    <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} key={i}/>
-                    <div>{(i === (count - 1)) ? <button onClick={() => (handleCollapse())}>Show less questions</button> : <></>}
-                    </div>
-                </div>
-              )
+              if (i < count) {
+                return (
+                  <div key={oneQuestion.question_id}>
+                    <div>Q: {oneQuestion.question_body}</div>
+                      <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
+                      <HelpfulAndReport question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
+                      <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
+                      <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} key={i}/>
+                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                      </div>)}
+                  </div>
+                )
+              }
             }
           })}
       </div>
@@ -95,6 +99,7 @@ const QuestionsList = (props) => {
 }
 
 export default QuestionsList;
+
 
 const Button = Styled.button`
   display: inline-block;
@@ -111,3 +116,6 @@ const Button = Styled.button`
   }
 `
 
+const QAdisplay = Styled.div`
+
+`

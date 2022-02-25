@@ -39,10 +39,14 @@ export default QuestionsAndAnswers;
 
 // STYLED COMPONENTS
 
-const Header = Styled.h2`
-color: indigo;
+const Header = Styled.div`
+color: black;
 padding: 20px;
-font-weight: 400;
+margin-top: 40px;
+font-weight: bold;
+font-size: 30px;
+border-bottom: 3px solid black;
+
 `
 const BottomButtons = Styled.div`
   display: flex;

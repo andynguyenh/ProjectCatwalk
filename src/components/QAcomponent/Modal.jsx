@@ -120,9 +120,10 @@ const Modal = (props) => {
             </StyledModal>
           </>
         )}
-
         {/* <h2>This is H2 for adding answer or question</h2> */}
-        <Button onClick={openModal}>Add Answer</Button>
+        <Test>
+        <AddAnswerButton onClick={openModal}>Add Answer</AddAnswerButton>
+        </Test>
       </ModalApp>
     );
   }
@@ -134,8 +135,8 @@ export default Modal;
 // STYLE COMPONENTS
 
 const ModalApp = Styled.div`
-  width: 90%;
-  padding: 50px;
+  width: 50%;
+  padding: 16px 1px;
 `
 const Overlay = Styled.div`
   width: 100%;
@@ -199,6 +200,20 @@ const Button = Styled.button`
     background-color: lightblue;
   }
 `
+const AddAnswerButton = Styled.button`
+  display: flex;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: blue;
+  }
+`
 const Error = Styled.span`
   color: red;
+`
+
+const Test = Styled.div`
 `

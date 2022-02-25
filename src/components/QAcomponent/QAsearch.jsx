@@ -17,8 +17,9 @@ export default QASearchBar;
 // STYLED COMPONENTS
 
 const Input = Styled.input`
-  width: 80%;
+  width: 100%;
   padding: 12px 20px;
+  margin: 0px 10px;
   box-sizing: border-box;
 `
 const SearchForm = Styled.form`

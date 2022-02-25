@@ -14,7 +14,6 @@ const HelpfulAndReport = (props) => {
 
   useEffect(() => {
     setReported(props.reported)
-    // type = 'Reported'
   }, [props.question])
 
   const handleHelpfulAndReportClick = () => {
@@ -45,21 +44,23 @@ const HelpfulAndReport = (props) => {
     if (type === 'Helpful?' && !clickedHelpful) {
       return (
         <div>
-          <div>{type}</div>
+          <Helpful>
+          <p>{type}</p>
           <Button onClick={() => {
             handleHelpfulAndReportClick()
             setClickedHelpful(true)
             setHelpful(helpful + 1)
           }}>Yes</Button>
-          <div>({helpful})</div>
+          <p>({helpful})</p>
+          </Helpful>
         </div>
       )
     } else if (type === 'Helpful?' && clickedHelpful) {
       return (
         <div>
-          <div>Helpful?</div>
-          <div>Yes</div>
-          <div>({helpful})</div>
+          <p>Helpful?</p>
+          <p>Yes</p>
+          <p>({helpful})</p>
         </div>
       )
     } else if (type === 'Reported') {
@@ -75,7 +76,7 @@ const HelpfulAndReport = (props) => {
             handleHelpfulAndReportClick()
             setClickedHelpful(true)
             setReported(true)
-          }}>{(!reported) ? <Button>{type}</Button> : <Reported>Reported</Reported>}
+          }}>{(!reported) ? <p>{type}</p> : <p>Reported</p>}
           </Button>
         </div>
       )
@@ -83,28 +84,28 @@ const HelpfulAndReport = (props) => {
   } else {
     if (type === 'Helpful?' && !clickedHelpful) {
       return (
-        <div>
-          <div>{type}</div>
+        <Helpful>
+          <p>{type}</p>
           <Button onClick={() => {
             handleHelpfulAndReportClick()
             setClickedHelpful(true)
             setHelpful(helpful + 1)
           }}>Yes</Button>
-          <div>({helpful})</div>
-        </div>
+          <p>({helpful})</p>
+        </Helpful>
       )
     } else if (type === 'Helpful?' && clickedHelpful) {
       return (
         <div>
-          <div>Helpful?</div>
-          <div>Yes</div>
-          <div>({helpful})</div>
+          <p>Helpful?</p>
+          <p>Yes</p>
+          <p>({helpful})</p>
         </div>
       )
     } else if (type === 'Reported') {
       return (
         <div>
-          <div>{type}</div>
+          <p>{type}</p>
         </div>
       )
     } else {
@@ -113,7 +114,7 @@ const HelpfulAndReport = (props) => {
           <Button onClick={() => {
             handleHelpfulAndReportClick()
             setReported(true)
-          }}>{(!reported) ? <Button>{type}</Button> : <Reported>Reported</Reported>}
+          }}>{(!reported) ? <a>{type}</a> : <p>Reported</p>}
           </Button>
         </div>
       )
@@ -125,12 +126,20 @@ export default HelpfulAndReport;
 
 // STYLED COMPONENTS
 
-const Button = Styled.a`
-    color: white;
-    :hover {
-      color: blue;
-    }
+const Button = Styled.button`
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: blue;
+  }
+`
+const Helpful = Styled.div`
+  display: flex;
+  padding: 0px 6px;
 `
 const Reported = Styled.div`
-    color: red;
+  color: red;
 `

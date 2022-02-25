@@ -306,7 +306,6 @@ class App extends React.Component {
         <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} currentProductPrice={this.state.price} currentProductImage={this.state.image} currentProductFeatures={this.state.features}/>
 
         <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
-        <hr></hr>
         <RatingsAndReviews />
       </div>
     )

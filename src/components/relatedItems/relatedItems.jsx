@@ -10,10 +10,14 @@ class RelatedItems extends React.Component {
         }
     }
     render() {
-        return (
-            <div>
+        return (<div>
                 <h2>Related Products Module</h2>
-                <RelatedProductsCarousel currentProduct={this.props.currentProduct} relatedItems={this.props.relatedItems}/>
+                <RelatedProductsCarousel
+                currentProduct={this.props.currentProduct}
+                relatedItems={this.props.relatedItems}
+                currentProductPrice={this.props.currentProductPrice}
+                currentProductImage={this.props.currentProductImage}
+                currentProductFeatures={this.props.currentProductFeatures}/>
                 {/* <YourOutfitContainer /> */}
             </div>
         )

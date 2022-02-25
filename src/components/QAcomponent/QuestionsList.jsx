@@ -217,9 +217,7 @@ const AnswerLineContainer = Styled.div`
   &::webkit-scrollbar {
     background-color: transparent;
   };
-  `
-
-  // height: 303px;
+`
 const Divide = Styled.div`
   display: flex;
   justify-content: right;
@@ -233,10 +231,6 @@ const BottomButtons = Styled.div`
   flex-direction: row;
   align-items: center;
 `
-
-// answers 50
-// questions single screen 100?
-
 const Question = Styled.p`
   color: black;
   font-weight: 700;

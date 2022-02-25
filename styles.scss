@@ -269,7 +269,6 @@ flex-direction: column;
   font-size: 30px;
 }
 
-
 .sale-price {
   color: red;
 }
@@ -299,7 +298,6 @@ flex-direction: column;
  padding-left: 10px;
  color: green;
 }
-
 
 .selection {
   grid-area: selection;
@@ -402,8 +400,7 @@ flex-direction: column;
   padding-left: 60px;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
+  text-align: center;
 }
 
 .social-container {

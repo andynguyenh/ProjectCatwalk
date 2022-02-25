@@ -393,6 +393,7 @@ h2 {
   padding-left: 60px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .social-container {

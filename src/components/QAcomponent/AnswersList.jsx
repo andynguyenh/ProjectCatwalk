@@ -3,11 +3,10 @@ import dateFormat from 'dateformat'
 import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
 import Styled from 'styled-components'
-
+import HelpfulAndReport from './Helpful.jsx'
 
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
-  // const [helpful, setHelpful] = useState()
   var answers = props.question.answers;
   var answersArray = [];
   var answerKeys = Object.keys(answers)
@@ -25,27 +24,45 @@ const AnswersList = (props) => {
       {answersArray.map((oneAnswer, i) => {
         if (!showAnswers) {
           if (answersArray.length === 2) {
-            <div key={oneAnswer.id}>
+            <EachAnswer key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
-                <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
-            </div>
+                <MoveRight>
+                  <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
+                  <Divide>|</Divide>
+                  <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                  <Divide>|</Divide>
+                  <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
+                </MoveRight>
+            </EachAnswer>
           } else if (i < 2) {
             return (
-              <div key={oneAnswer.id}>
+              <EachAnswer key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
-                <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
+                <MoveRight>
+                  <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
+                  <Divide>|</Divide>
+                  <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                  <Divide>|</Divide>
+                  <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
+                </MoveRight>
                 <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true} key={oneAnswer.id}/> : <></>}</div>
-              </div>
+              </EachAnswer>
             )
           }
         } else {
           return (
-            <div key={oneAnswer.id}>
+            <EachAnswer key={oneAnswer.id}>
               <div>A: {oneAnswer.body}</div>
-              <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
+              <MoveRight>
+                <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
+                <Divide>|</Divide>
+                <HelpfulAndReport help={true} helpfulness={oneAnswer.helpfulness} answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} questionOrAnswer={'answer'}/>
+                <Divide>|</Divide>
+                <HelpfulAndReport answer={oneAnswer} updateHelpful={props.updateHelpful} reported={false} type={'answer'}/>
+                </MoveRight>
                 <div>{(i === answersArray.length - 1) ? <Button onClick={() => (handleCollapse())}>Collapse Answers</Button> : <></>}
               </div>
-            </div>
+            </EachAnswer>
           )
         }
       })}
@@ -56,7 +73,13 @@ const AnswersList = (props) => {
 export default AnswersList;
 
 // STYLED COMPONENTS
+const EachAnswer = Styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: beige;
+  padding: 20px;
 
+`
 const Button = Styled.button`
   display: inline-block;
   border-radius: 3px;
@@ -70,4 +93,20 @@ const Button = Styled.button`
   &:hover {
     background-color: lightblue;
   }
-  `
+`
+const MoveRight = Styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`
+const Divide = Styled.div`
+  display: flex;
+  justify-content: right;
+  font-weight: bold;
+`
+const UserInfo = Styled.div`
+  display: flex;
+  margin: 0px 6px;
+  padding-left: 12px
+`

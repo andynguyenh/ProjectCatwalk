@@ -24,6 +24,7 @@ class App extends React.Component {
       price: '',
       orginalPrice: '',
       skus: [],
+      features: [],
       relatedItems: [],
       relatedItemsData: [],
       currentItemRating: 0
@@ -33,6 +34,8 @@ class App extends React.Component {
     this.updateProduct = this.updateProduct.bind(this);
     this.submitCart = this.submitCart.bind(this);
     this.getCurrentProductQuestionsAndAnswers = this.getCurrentProductQuestionsAndAnswers.bind(this);
+    this.updateHelpfulAndReport = this.updateHelpfulAndReport.bind(this)
+    this.addQuestionOrAnswer = this.addQuestionOrAnswer.bind(this)
   }
 
   componentDidMount() {
@@ -57,6 +60,14 @@ class App extends React.Component {
       .then(productRes => {
         axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/styles`, { headers: { Authorization: `${API_KEY}` } })
           .then(styleRes => {
+            // start
+            axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}`, { headers: { Authorization: `${API_KEY}` } })
+            .then(productFeatures => {
+              this.setState({
+                features: productFeatures.data.features
+              })
+            })
+            // end
             // create sku array of objects so easier to map through in component
             let skuArray = [];
             let allSkus = styleRes.data.results[0].skus;
@@ -121,13 +132,48 @@ class App extends React.Component {
   }
 
   getCurrentProductQuestionsAndAnswers(currentProductID) {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${currentProductID}`, { headers: { Authorization: API_KEY } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${currentProductID}&page=1&count=50`, { headers: { Authorization: API_KEY } })
       .then((questions) => {
         this.setState({
           currentQuestions: questions.data.results
         })
       })
   }
+
+  updateHelpfulAndReport (QorA, currentQuestion_id, endpoint) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/${QorA}/${currentQuestion_id}/${endpoint}`, undefined, {
+      headers: {Authorization: API_KEY}
+    })
+  }
+
+  addQuestionOrAnswer (QorA_id, endpoint, body) {
+    console.log(body)
+    if (endpoint !== 'answers') {
+      axios({
+        method: 'post',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
+        headers: {Authorization: API_KEY},
+        'content-type': 'application/json',
+        data: body
+      })
+        .then(() => {
+          console.log('success')
+        })
+    } else {
+      axios({
+        method: 'post',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${QorA_id}/${endpoint}`,
+        headers: {Authorization: API_KEY},
+        'content-type': 'application/json',
+        data: body
+      })
+        .then(() => {
+          console.log('success')
+        })
+    }
+  }
+
+  //axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${QorA_id}/${endpoint}`
 
   updateStyle(style) {
     let stylePrice;
@@ -156,17 +202,25 @@ class App extends React.Component {
 
   updateProduct(product) {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: `${API_KEY}` } })
-      .then(styleRes => {
-        // create sku array of objects so easier to map through in component
-        let skuArray = [];
-        let allSkus = styleRes.data.results[0].skus;
-        for (let key in allSkus) {
-          let skuObj = {};
-          skuObj.id = key;
-          skuObj.quantity = allSkus[key].quantity;
-          skuObj.size = allSkus[key].size;
-          skuArray.push(skuObj);
-        }
+    .then(styleRes => {
+      //start
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}`, { headers: { Authorization: `${API_KEY}` } })
+      .then(productFeatures => {
+        this.setState({
+          features: productFeatures.data.features
+        })
+      })
+      // end
+      // create sku array of objects so easier to map through in component
+      let skuArray = [];
+      let allSkus = styleRes.data.results[0].skus;
+      for (let key in allSkus) {
+        let skuObj = {};
+        skuObj.id = key;
+        skuObj.quantity = allSkus[key].quantity;
+        skuObj.size = allSkus[key].size;
+        skuArray.push(skuObj);
+      }
 
         // check for sale price otherwise default price
         let stylePrice;
@@ -247,13 +301,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Project Catwalk Hello World !!</h1>
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} />
-        <hr></hr>
-        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} />
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
+        <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
         <hr></hr>
         <RatingsAndReviews />
-        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} />
       </div>
     )
   }

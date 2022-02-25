@@ -50,12 +50,20 @@ h2 {
 }
 
 #modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 2px 16px;
   background-color: gray;
   color: white;
 }
 
-#modal-body {padding: 2px 16px;}
+#modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 16px;
+}
 
 #modal-footer {
   padding: 2px 16px;

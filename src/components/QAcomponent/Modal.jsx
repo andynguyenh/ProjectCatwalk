@@ -79,7 +79,9 @@ const Modal = (props) => {
             </StyledModal>
           </>
         )}
-        <Button type='button' onClick={openModal}>Add Question</Button>
+        <ButtonDiv>
+          <Button type='button' onClick={openModal}>Add Question</Button>
+        </ButtonDiv>
       </ModalApp>
     );
   } else {
@@ -121,9 +123,7 @@ const Modal = (props) => {
           </>
         )}
         {/* <h2>This is H2 for adding answer or question</h2> */}
-        <Test>
         <AddAnswerButton onClick={openModal}>Add Answer</AddAnswerButton>
-        </Test>
       </ModalApp>
     );
   }
@@ -214,6 +214,7 @@ const AddAnswerButton = Styled.button`
 const Error = Styled.span`
   color: red;
 `
-
-const Test = Styled.div`
+const ButtonDiv = Styled.div`
+  width: 50%;
+  padding: 16px 1px;
 `

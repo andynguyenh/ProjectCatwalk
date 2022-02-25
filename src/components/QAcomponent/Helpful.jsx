@@ -114,7 +114,7 @@ const HelpfulAndReport = (props) => {
           <Button onClick={() => {
             handleHelpfulAndReportClick()
             setReported(true)
-          }}>{(!reported) ? <a>{type}</a> : <p>Reported</p>}
+          }}>{(!reported) ? <p>{type}</p> : <p>Reported</p>}
           </Button>
         </div>
       )

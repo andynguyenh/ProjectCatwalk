@@ -21,7 +21,9 @@ const LoadMore = (props) => {
   }
 
   return (
-    <Button onClick={() => (handleClick())}>Show more {type}</Button>
+    <ButtonDiv>
+      <Button onClick={() => (handleClick())}>Show more {type}</Button>
+    </ButtonDiv>
   )
 }
 
@@ -30,16 +32,21 @@ export default LoadMore;
 // STYLED COMPONENTS
 
 const Button = Styled.button`
-  display: inline-block;
-  border-radius: 3px;
-  cursor: pointer;
-  padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
-  width: 11rem;
-  background: black;
-  color: white;
-  border: 2px solid white;
-  &:hover {
-    background-color: lightblue;
-  }
+display: block;
+border-radius: 3px;
+cursor: pointer;
+padding: 0.5rem 0;
+margin: 0.5rem 1rem;
+width: 11rem;
+color: white;
+background: black;
+border: 2px solid white;
+&:hover {
+  background-color: lightblue;
+}
+`
+
+const ButtonDiv = Styled.div`
+  width: 50%;
+  padding: 16px 1px;
 `

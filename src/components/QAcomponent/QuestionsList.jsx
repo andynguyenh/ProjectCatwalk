@@ -27,7 +27,6 @@ const QuestionsList = (props) => {
             if (i < count) {
               return (
                 <div key={oneQuestion.question_id}>
-
                   <QuestionLineContainer>
                     <p>Q: {oneQuestion.question_body}</p>
                     <MoveRight>
@@ -39,11 +38,20 @@ const QuestionsList = (props) => {
 
                   <AnswerLineContainer>
                     <AnswersList  question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
-                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
-                      </div>)}
                   </AnswerLineContainer>
 
+                  <BottomButtons>
+                  <div>
+                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                      </div>)}
                   </div>
+                  <div>
+                    {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <Modal questions={true} currentProduct={props.currentProduct} currentProduct_id={props.currentProduct_id} addQorA={props.addQorA}/> : <></>}
+                    </div>)}
+                  </div>
+                  </BottomButtons>
+
+                </div>
               )
             }
           } else {
@@ -58,12 +66,19 @@ const QuestionsList = (props) => {
                       <Modal currentQuestion={oneQuestion.question_body} currentQuestion_id={oneQuestion.question_id} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
                     </MoveRight>
                   </QuestionLineContainer>
-
                   <AnswerLineContainer>
                     <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id}/>
-                      <div>{(i < props.questions.length && i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
-                      </div>
                   </AnswerLineContainer>
+                  
+                  <BottomButtons>
+                  <div>
+                    <div>{(i < props.questions.length && i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                  </div>
+                  <div>
+                    {(i < props.questions.length && i === (count - 1)) ? <Modal questions={true} currentProduct={props.currentProduct} currentProduct_id={props.currentProduct_id} addQorA={props.addQorA}/> : <></>}
+                    </div>
+                  </div>
+                </BottomButtons>
                 </div>
               )
             }
@@ -91,12 +106,15 @@ const QuestionsList = (props) => {
                         <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} answers={true} key={i}/>
                       </MoveRight>
                     </QuestionLineContainer>
+
                     <AnswerLineContainer>
                       <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} addQorA={props.addQorA} searchedTerm={props.searchTerm} key={oneQuestion.question_id} />
                     </AnswerLineContainer>
+                      <div>
                         <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
                         </div>
-                    </div>
+                      </div>
+                  </div>
                 )
               }
             } else {
@@ -105,14 +123,16 @@ const QuestionsList = (props) => {
                   <div key={oneQuestion.question_id}>
                     <QuestionLineContainer>
                       <p>Q: {oneQuestion.question_body}</p>
+                      <MoveRight>
                         <HelpfulAndReport help={true} helpfulness={oneQuestion.question_helpfulness} question={oneQuestion} updateHelpful={props.updateHelpful} reported={oneQuestion.reported} questionOrAnswer={'question'}/>
                         <Divide>|</Divide>
                         <Modal currentQuestion={oneQuestion.question_body} currentProduct={props.currentProduct} addQorA={props.addQorA} answers={true} key={i}/>
-                        {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
-                        </div>)}
+                        </MoveRight>
                     </QuestionLineContainer>
                     <AnswerLineContainer>
                       <AnswersList question={oneQuestion} updateHelpful={props.updateHelpful} searchedTerm={props.searchTerm} key={oneQuestion.question_id} key={i}/>
+                      {(props.questions.length > 2 && <div>{(i === (count - 1)) ? <LoadMore setShowQuestions={setShowQuestions} count={count} setCount={setCount} key={i}/> : <></>}
+                        </div>)}
                     </AnswerLineContainer>
                   </div>
                 )
@@ -157,17 +177,8 @@ const Divide = Styled.div`
   font-weight: bold;
 `;
 
-// const Button = Styled.button`
-//   display: inline-block;
-//   border-radius: 3px;
-//   cursor: pointer;
-//   padding: 0.5rem 0;
-//   margin: 0.5rem 1rem;
-//   width: 11rem;
-//   background: black;
-//   color: white;
-//   border: 2px solid white;
-//   &:hover {
-//     background-color: lightblue;
-//   }
-// `
+const BottomButtons = Styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`

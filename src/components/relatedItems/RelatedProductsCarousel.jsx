@@ -12,11 +12,14 @@ class RelatedProductsCarousel extends React.Component {
       relatedProductsIndex: 0,
       relatedProductsWithInfo: [],
       modalVisible: false,
-      modalContents: { text: 'Hello World!' }
+      itemCardData: { text: 'Hello World!' }
     }
 
     this.showModal = this.showModal.bind(this)
   }
+
+  //componentwillunmount?
+
 
   componentWillLoad() {
     this.buildRelatedItemProperties()
@@ -82,7 +85,8 @@ class RelatedProductsCarousel extends React.Component {
           name: responseArray[0].data.name,
           category: responseArray[0].data.category,
           price: responseArray[0].data.default_price,
-          rating: this.averageProductRatings(responseArray[2])
+          rating: this.averageProductRatings(responseArray[2]),
+          features: responseArray[0].data.features
         }
 
         //use a default placeholder image if none is available from the API
@@ -123,18 +127,17 @@ class RelatedProductsCarousel extends React.Component {
     }
   }
 
-  showModal(modalMessage) {
+  showModal(individualCardData) {
     this.setState({
       modalVisible: !this.state.modalVisible,
-      modalContents: modalMessage
+      itemCardData: individualCardData
     })
   }
 
   render() {
     return (
       <div id="relatedProductsContainer">
-        <StarRating size={32} rating={3.5}/>
-        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} modalContents={this.state.modalContents} />
+        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} itemCardData={this.state.itemCardData} />
         <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
 
         <div id="buttonLeftRight">

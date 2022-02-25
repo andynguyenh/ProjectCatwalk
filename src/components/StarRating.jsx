@@ -23,8 +23,8 @@ const StarRating = (props) => {
     }
   }
 
-  return <div>
-    <svg style={{ width: 0, height: 0 }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  return <div className="StarRatingContainer"><div style={{ width: 0, height: 0 }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
       <defs>
         <mask id="empty">
           <rect x="0" y="0" fill="white" />
@@ -52,17 +52,19 @@ const StarRating = (props) => {
         </symbol>
       </defs>
     </svg>
+    </div>
 
-    <p className="star-rating" aria-label="4.5 stars out of 5">
-      {starArray.map((currentStar) => (
-        <svg className="c-star active" width={props.size} height={props.size} viewBox="0 0 32 32">
+    <div className="star-rating" aria-label="4.5 stars out of 5">
+
+    {starArray.map((currentStar, index) => (
+        <svg className="c-star" width={props.size} height={props.size} viewBox="0 0 32 32" key={index}>
           <use xlinkHref="#star" mask={currentStar}></use>
           <use xlinkHref="#star" fill="none" stroke="black" strokeWidth="2"></use>
         </svg>
       ))}
-    </p>
+
+    </div>
   </div>
 }
 
 export default StarRating;
-

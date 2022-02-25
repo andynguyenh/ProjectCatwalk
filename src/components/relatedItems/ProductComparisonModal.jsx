@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from '../StarRating.jsx'
 
 const ProductComparisonModal = (props) => {
   if (!props.show) {
@@ -6,17 +7,19 @@ const ProductComparisonModal = (props) => {
   }
   return <div id="comparison-modal">
     <div id="modal-content">
-      <div id="modal-header"><h2>Compare Products</h2><button onClick={e => {
+      <div id="modal-header"><h2>Comparing</h2><button onClick={e => {
         props.showModal()
       }
       }>Close</button></div>
       <div id="modal-body">
       <div>⭐️</div>
-      <img src={props.modalContents.picture} width="200" height="200"></img>
-      <div id="ItemCard_Name">{props.modalContents.name}</div>
-      <div id="ItemCard_Category">{props.modalContents.category}</div>
-      <div id="ItemCard_Price">{props.modalContents.price}</div>
-      <div id="ItemCard_Stars">{props.modalContents.rating}</div>
+      {console.log('props in the modal:', props)}
+      <img src={props.itemCardData.picture} width="200" height="200"></img>
+      <div id="ItemCard_Name">{props.itemCardData.name}</div>
+      <div id="ItemCard_Category">{props.itemCardData.category}</div>
+      <div id="ItemCard_Price">{props.itemCardData.price}</div>
+      <div id="ItemCard_Stars">{props.itemCardData.rating}</div>
+      <StarRating size={16} rating={props.itemCardData.rating} />
       </div>
       <div id="modal-footer">Footer</div>
     </div>

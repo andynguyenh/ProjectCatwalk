@@ -4,6 +4,7 @@ import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
 import Styled from 'styled-components'
 import HelpfulAndReport from './Helpful.jsx'
+import DisplayPhotos from './Photos.jsx'
 
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
@@ -26,6 +27,9 @@ const AnswersList = (props) => {
           if (answersArray.length === 2) {
             <EachAnswer key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
+                <div>
+                <DisplayPhotos photos={oneAnswer.photos}/>
+                </div>
                 <MoveRight>
                   <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
                   <Divide>|</Divide>
@@ -38,6 +42,9 @@ const AnswersList = (props) => {
             return (
               <EachAnswer key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
+                <div>
+                <DisplayPhotos photos={oneAnswer.photos}/>
+                </div>
                 <MoveRight>
                   <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
                   <Divide>|</Divide>
@@ -53,6 +60,9 @@ const AnswersList = (props) => {
           return (
             <EachAnswer key={oneAnswer.id}>
               <div>A: {oneAnswer.body}</div>
+              <div>
+                <DisplayPhotos photos={oneAnswer.photos}/>
+                </div>
               <MoveRight>
                 <UserInfo>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</UserInfo>
                 <Divide>|</Divide>
@@ -106,6 +116,6 @@ const Divide = Styled.div`
 `
 const UserInfo = Styled.div`
   display: flex;
-  margin: 0px 6px;
+  margin: 0px 8px;
   padding-left: 12px
 `

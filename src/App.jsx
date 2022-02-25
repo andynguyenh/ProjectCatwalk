@@ -24,6 +24,7 @@ class App extends React.Component {
       price: '',
       orginalPrice: '',
       skus: [],
+      features: [],
       relatedItems: [],
       relatedItemsData: []
     }
@@ -58,6 +59,14 @@ class App extends React.Component {
       .then(productRes => {
         axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/styles`, { headers: { Authorization: `${API_KEY}` } })
           .then(styleRes => {
+            // start
+            axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}`, { headers: { Authorization: `${API_KEY}` } })
+            .then(productFeatures => {
+              this.setState({
+                features: productFeatures.data.features
+              })
+            })
+            // end
             // create sku array of objects so easier to map through in component
             let skuArray = [];
             let allSkus = styleRes.data.results[0].skus;
@@ -192,6 +201,14 @@ class App extends React.Component {
   updateProduct(product) {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/styles`, { headers: { Authorization: `${API_KEY}` } })
     .then(styleRes => {
+      //start
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}`, { headers: { Authorization: `${API_KEY}` } })
+      .then(productFeatures => {
+        this.setState({
+          features: productFeatures.data.features
+        })
+      })
+      // end
       // create sku array of objects so easier to map through in component
       let skuArray = [];
       let allSkus = styleRes.data.results[0].skus;
@@ -253,12 +270,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Project Catwalk Hello World !!</h1>
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart}/>
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
         <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
         <hr></hr>
         <RatingsAndReviews />
-        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
       </div>
     )
   }

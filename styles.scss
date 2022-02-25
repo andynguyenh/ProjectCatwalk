@@ -51,7 +51,7 @@ h2 {
 
 #modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: gray;
   color: white;
 }
 
@@ -59,7 +59,7 @@ h2 {
 
 #modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: gray;
   color: white;
 }
 
@@ -120,7 +120,6 @@ flex-direction: column;
   margin-right: auto;
   overflow: hidden;
   background-color: #fefefe;
-  border: dotted;
 }
 
 .overviewContainer {

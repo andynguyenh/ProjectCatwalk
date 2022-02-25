@@ -6,7 +6,7 @@ const QASearchBar = (props) => {
 
     return (
         <SearchForm>
-          <Input type="text" placeholder="Have a question? Search for answers!" name="search" onChange={(e) => (props.searchOnChange(e))}></Input>
+          <Input type="text" placeholder="Have a question? Search for answers..." name="search" onChange={(e) => (props.searchOnChange(e))}></Input>
           <Button  onClick={(e) => (e.preventDefault())}>Search</Button>
         </SearchForm>
     )
@@ -27,7 +27,7 @@ const SearchForm = Styled.form`
   justify-content: space-evenly;
   align-items: left;
   flex-direction: row;
-  padding: 12px 20px;
+  padding: 20px 20px;
   box-sizing: border-box;
   width: 100%;
 `

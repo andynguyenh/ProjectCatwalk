@@ -57,11 +57,11 @@ const HelpfulAndReport = (props) => {
       )
     } else if (type === 'Helpful?' && clickedHelpful) {
       return (
-        <div>
+        <Helpful>
           <p>Helpful?</p>
-          <p>Yes</p>
+          <Yes>Yes</Yes>
           <p>({helpful})</p>
-        </div>
+        </Helpful>
       )
     } else if (type === 'Reported') {
       return (
@@ -96,11 +96,11 @@ const HelpfulAndReport = (props) => {
       )
     } else if (type === 'Helpful?' && clickedHelpful) {
       return (
-        <div>
+        <Helpful>
           <p>Helpful?</p>
-          <p>Yes</p>
+          <Yes>Yes</Yes>
           <p>({helpful})</p>
-        </div>
+        </Helpful>
       )
     } else if (type === 'Reported') {
       return (
@@ -136,10 +136,18 @@ const Button = Styled.button`
     color: blue;
   }
 `
+const HelpfulContainer = Styled.div`
+  display: flex;
+  align-items: center;
+`
 const Helpful = Styled.div`
   display: flex;
+  align-items: center;
   padding: 0px 6px;
 `
 const Reported = Styled.div`
   color: red;
+`
+const Yes = Styled.p`
+padding: 0px 4px;
 `

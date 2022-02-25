@@ -9,7 +9,7 @@ const Modal = (props) => {
   const onSubmit = (data) => {
     let body = {}
 
-    console.log(props)
+    console.log(props.currentProduct_id)
     console.log('body in modal', body)
     console.log('data', data)
 
@@ -195,9 +195,10 @@ const Button = Styled.button`
   width: 11rem;
   color: white;
   background: black;
-  border: 2px solid white;
+  border: 2px solid black;
   &:hover {
-    background-color: lightblue;
+    background-color: white;
+    color: black;
   }
 `
 const AddAnswerButton = Styled.button`

@@ -139,7 +139,7 @@ h2 {
   margin-top: 8%;
   display: grid;
   grid-template-columns: 10% 50% 35%;
-  grid-template-rows: 20% 10% 25% 10% 15% 10%;
+  grid-template-rows: 10% 10% 25% 10% 15% 10%;
   grid-gap: 0.5em;
   grid-template-areas: "gallery gallery ratings" "gallery gallery category" "gallery gallery style" "gallery gallery selection" "description description otherStuff" "products products products";
 }
@@ -152,7 +152,7 @@ h2 {
 
 .main-image {
   object-fit: cover;
-  height: 650px;
+  height: 565px;
   width: 500px;
 }
 
@@ -172,7 +172,7 @@ h2 {
 /* attempting slide show */
 .slideshow-container {
   display: flex;
-  height: 650px;
+  height: 565px;
   width: 450px;
   position: relative;
 }
@@ -196,13 +196,13 @@ h2 {
 .expandedView {
   display: flex;
   position: relative;
-  height: 700px;
+  height: 565px;
   width: 750px;
 }
 
 .expanded-image {
   object-fit: cover;
-  height: 700px;
+  height: 565px;
   width: 750px;
 }
 
@@ -239,7 +239,7 @@ h2 {
 }
 
 .thumbnail-container {
-  height: 584px;
+  height: 565px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -407,6 +407,7 @@ h2 {
 
 .product-description {
   align-self: center;
+  align-content: center;
 }
 
 .otherStuff {
@@ -418,6 +419,10 @@ h2 {
   justify-content: center;
 }
 
+.slogan {
+  font-size: 25px;
+}
+
 .products {
   grid-area: products;
   display: flex;
@@ -426,7 +431,9 @@ h2 {
 }
 
 .each-product {
-  border-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 /*# sourceMappingURL=styles.css.map */

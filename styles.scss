@@ -2,6 +2,27 @@ h1 {
   color: blue;
 }
 
+svg {
+  width: 32;
+  height: 32;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  height: 16px;
+}
+
+.StarRatingContainer {
+  color: black;
+  height: 4;
+  }
+
+.c-star {
+  fill: hotpink;
+  }
+
 .navbar {
   background-color: black;
   position: fixed;
@@ -16,6 +37,7 @@ h2 {
 }
 
 #comparison-modal {
+  box-shadow: 10px 5px 5px black;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;

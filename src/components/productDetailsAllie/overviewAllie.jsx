@@ -8,6 +8,7 @@ import { fabPinterest } from '@fortawesome/fontawesome-free-brands';
 import { fasExpand } from '@fortawesome/fontawesome-free-solid';
 import { fasCompress } from '@fortawesome/fontawesome-free-solid';
 import { fasStar } from '@fortawesome/fontawesome-free-solid'
+import StarRating from '../StarRating.jsx';
 
 
 class OverviewAllie extends React.Component {
@@ -129,7 +130,7 @@ class OverviewAllie extends React.Component {
         return (
             <div>
                 <div className='navbar'>
-                    <h2>Team Hickory</h2>
+                    <h2>Team Hickory Dickory Dock</h2>
                 </div>
                 <div className="overviewContainer">
                     {this.state.expandImage
@@ -168,19 +169,13 @@ class OverviewAllie extends React.Component {
                     <div className="ratings">
                         {this.state.expandImage
                             ? <div></div>
-                            : <div>
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
-                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                            : <div className='star-icons'>
+                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
+                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
+                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
+                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
+                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
                             </div>
-                            // <div>
-                            //     <b>Products</b>
-                            //     {this.props.products.map((product, i) => (
-                            //         <div className='products' onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
-                            //     ))}
-                            // </div>
                         }
                     </div>
                     <div className="category">

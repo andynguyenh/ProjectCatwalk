@@ -76,7 +76,6 @@ export default AnswersList;
 const EachAnswer = Styled.div`
   display: flex;
   flex-direction: column;
-  background-color: beige;
   padding: 20px;
 
 `

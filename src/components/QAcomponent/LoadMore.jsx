@@ -40,9 +40,10 @@ margin: 0.5rem 1rem;
 width: 11rem;
 color: white;
 background: black;
-border: 2px solid white;
+border: 2px solid black;
 &:hover {
-  background-color: lightblue;
+  background-color: white;
+  color: black;
 }
 `
 

@@ -55,14 +55,15 @@ flex-direction: column;
   margin-top: 8%;
   display: grid;
   grid-template-columns: 10% 50% 35%;
-  grid-template-rows: 20% 10% 25% 10% 15%;
+  grid-template-rows: 20% 10% 25% 10% 15% 10%;
   grid-gap: 0.5em;
   grid-template-areas:
   "gallery gallery ratings"
   "gallery gallery category"
   "gallery gallery style"
   "gallery gallery selection"
-  "description description otherStuff";
+  "description description otherStuff"
+  "products products products";
 }
 
 .gallery {
@@ -185,6 +186,13 @@ flex-direction: column;
   flex-direction: column;
 }
 
+.product-category {
+  text-transform: uppercase;
+}
+
+.product-name {
+  font-size: 30px;
+}
 
 .sale-price {
   color: red;
@@ -343,4 +351,18 @@ flex-direction: column;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.products {
+  grid-area: products;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  // border-style: solid;
+  // border-color: black;
+}
+
+.each-product {
+  border-style: none;
 }

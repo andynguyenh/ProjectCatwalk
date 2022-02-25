@@ -6,6 +6,7 @@ import { fabFacebook } from '@fortawesome/fontawesome-free-brands';
 import { fabTwitter } from '@fortawesome/fontawesome-free-brands';
 import { fabPinterest } from '@fortawesome/fontawesome-free-brands';
 import { fasExpand } from '@fortawesome/fontawesome-free-solid'
+import { fasCompress } from '@fortawesome/fontawesome-free-solid'
 
 class OverviewAllie extends React.Component {
     constructor(props) {
@@ -130,32 +131,26 @@ class OverviewAllie extends React.Component {
                 </div>
                 <div className="overviewContainer">
                     {this.state.expandImage
-                    ? <div className='expandedView'>
-                    <img className='expanded-image' src={this.props.currentStyle.photos[this.state.slideIndex].url}></img>
-                    <FontAwesomeIcon className='expandedIcon' icon="fa-solid fa-expand" onClick={this.expandImage} />
-                </div>
-                :
-                    <div className="gallery">
-                        <div className='thumbnail-container'>
-                            {this.props.currentStyle.photos?.map((photo, i) => (
-                                ((this.props.currentStyle.photos[this.state.slideIndex].thumbnail_url === photo.thumbnail_url)
-                                    ? <div key={i}>
-                                        <img className='thumbnail-image-border' src={photo.thumbnail_url} height='65' width='60' onClick={() => this.selectStyleThumbnail(i)}></img>
-                                    </div>
-                                    : <div key={i}>
-                                        <img className='thumbnail-image' src={photo.thumbnail_url} height='65' width='60' onClick={() => this.selectStyleThumbnail(i)}></img>
-                                    </div>
-                                )
-                            ))}
+                        ? <div className='expandedView'>
+                            <img className='expanded-image' src={this.props.currentStyle.photos[this.state.slideIndex].url}></img>
+                            <FontAwesomeIcon className='expandedIcon' icon="fa-solid fa-compress" onClick={this.expandImage} />
                         </div>
-                        <div className='slideshow-container'>
-                            {/* {this.state.expandImage
-                                ?
-                                <div className='expandedView'>
-                                    <img className='expanded-image' src={this.props.currentStyle.photos[this.state.slideIndex].url}></img>
-                                    <FontAwesomeIcon className='expandedIcon' icon="fa-solid fa-expand" onClick={this.expandImage} />
-                                </div> : */}
-                                 <div>
+                        :
+                        <div className="gallery">
+                            <div className='thumbnail-container'>
+                                {this.props.currentStyle.photos?.map((photo, i) => (
+                                    ((this.props.currentStyle.photos[this.state.slideIndex].thumbnail_url === photo.thumbnail_url)
+                                        ? <div key={i}>
+                                            <img className='thumbnail-image-border' src={photo.thumbnail_url} height='65' width='60' onClick={() => this.selectStyleThumbnail(i)}></img>
+                                        </div>
+                                        : <div key={i}>
+                                            <img className='thumbnail-image' src={photo.thumbnail_url} height='65' width='60' onClick={() => this.selectStyleThumbnail(i)}></img>
+                                        </div>
+                                    )
+                                ))}
+                            </div>
+                            <div className='slideshow-container'>
+                                <div>
                                     {this.props.currentStyle.photos?.map((photo, i) => (
                                         <div className={`slide index${i}`} key={i}>
                                             <img className="main-image" src={photo.url}></img>
@@ -163,22 +158,21 @@ class OverviewAllie extends React.Component {
                                     ))}
                                     <a className='prev' onClick={this.previousSlide}>&#10094;</a>
                                     <a className='next' onClick={this.nextSlide}>&#10095;</a>
-                                    {/* <button className='expand'>Expand</button> */}
                                     <FontAwesomeIcon className='expand' icon="fa-solid fa-expand" onClick={this.expandImage} />
                                 </div>
-                            {/* } */}
+                            </div>
                         </div>
-                    </div>
                     }
                     <div className="ratings">
                         {this.state.expandImage
                             ? <div></div>
-                            : <div>
-                                <b>Products</b>
-                                {this.props.products.map((product, i) => (
-                                    <div className='products' onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
-                                ))}
-                            </div>
+                            : <div></div>
+                            // <div>
+                            //     <b>Products</b>
+                            //     {this.props.products.map((product, i) => (
+                            //         <div className='products' onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
+                            //     ))}
+                            // </div>
                         }
                     </div>
                     <div className="category">
@@ -186,8 +180,8 @@ class OverviewAllie extends React.Component {
                             ? <div></div>
                             :
                             <div>
-                                <div>{this.props.currentProduct.category}</div>
-                                <div><b>{this.props.currentProduct.name}</b></div>
+                                <div className='product-category'>{this.props.currentProduct.category}</div>
+                                <div className='product-name'><b>{this.props.currentProduct.name}</b></div>
                                 {this.props.currentStyle.sale_price
                                     ? <div className="sale-price">${this.props.currentStyle.sale_price} <s>{this.props.currentStyle.original_price}</s></div>
                                     : <div>${this.props.currentStyle.original_price}</div>
@@ -204,7 +198,6 @@ class OverviewAllie extends React.Component {
                                 ((this.props.currentStyle.style_id === style.style_id)
                                     ?
                                     <div className='style-container'>
-                                        {/* <span className='checkmark'>✔</span> */}
                                         <FontAwesomeIcon className='checkmark' icon="fa-solid fa-check" />
                                         <img className='style-image' height='65' width='60' src={style.photos[0].thumbnail_url} onClick={() => this.selectedStyle(style)} key={i}></img>
                                     </div>
@@ -252,6 +245,14 @@ class OverviewAllie extends React.Component {
                                 <br></br>
                             </div>
                         ))}
+                    </div>
+                    <div className='products'>
+                        <div><b>Products</b></div>
+                        <div className='each-product'>
+                            {this.props.products.map((product, i) => (
+                                <div className='products' onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>
+                            ))}
+                        </div>
                     </div>
                 </div >
             </div>

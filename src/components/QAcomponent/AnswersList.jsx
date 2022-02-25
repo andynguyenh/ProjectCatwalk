@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import dateFormat from 'dateformat'
 import LoadMore from './LoadMore.jsx'
 import Modal from './Modal.jsx'
+import Styled from 'styled-components'
+
 
 const AnswersList = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
@@ -23,25 +25,25 @@ const AnswersList = (props) => {
       {answersArray.map((oneAnswer, i) => {
         if (!showAnswers) {
           if (answersArray.length === 2) {
-            <div>
+            <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
             </div>
           } else if (i < 2) {
             return (
-              <div>
+              <div key={oneAnswer.id}>
                 <div>A: {oneAnswer.body}</div>
                 <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
-                <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true}/> : <></>}</div>
+                <div>{(i === 1) ? <LoadMore setShowAnswers={setShowAnswers} answersComponent={true} key={oneAnswer.id}/> : <></>}</div>
               </div>
             )
           }
         } else {
           return (
-            <div>
+            <div key={oneAnswer.id}>
               <div>A: {oneAnswer.body}</div>
               <div>User: {oneAnswer.answerer_name} Date Posted: {dateFormat(oneAnswer.date, "paddedShortDate", "mm, dd, yyyy")}</div>
-                <div>{(i === answersArray.length - 1) ? <button onClick={() => (handleCollapse())}>Collapse Answers</button> : <></>}
+                <div>{(i === answersArray.length - 1) ? <Button onClick={() => (handleCollapse())}>Collapse Answers</Button> : <></>}
               </div>
             </div>
           )
@@ -53,3 +55,19 @@ const AnswersList = (props) => {
 
 export default AnswersList;
 
+// STYLED COMPONENTS
+
+const Button = Styled.button`
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  &:hover {
+    background-color: lightblue;
+  }
+  `

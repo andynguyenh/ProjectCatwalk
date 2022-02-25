@@ -5,8 +5,10 @@ import { fabInstagram } from '@fortawesome/fontawesome-free-brands';
 import { fabFacebook } from '@fortawesome/fontawesome-free-brands';
 import { fabTwitter } from '@fortawesome/fontawesome-free-brands';
 import { fabPinterest } from '@fortawesome/fontawesome-free-brands';
-import { fasExpand } from '@fortawesome/fontawesome-free-solid'
-import { fasCompress } from '@fortawesome/fontawesome-free-solid'
+import { fasExpand } from '@fortawesome/fontawesome-free-solid';
+import { fasCompress } from '@fortawesome/fontawesome-free-solid';
+import { fasStar } from '@fortawesome/fontawesome-free-solid'
+
 
 class OverviewAllie extends React.Component {
     constructor(props) {
@@ -166,7 +168,13 @@ class OverviewAllie extends React.Component {
                     <div className="ratings">
                         {this.state.expandImage
                             ? <div></div>
-                            : <div></div>
+                            : <div>
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                                <FontAwesomeIcon icon="fa-solid fa-star" />
+                            </div>
                             // <div>
                             //     <b>Products</b>
                             //     {this.props.products.map((product, i) => (
@@ -197,12 +205,12 @@ class OverviewAllie extends React.Component {
                             {this.props.styles.map((style, i) => (
                                 ((this.props.currentStyle.style_id === style.style_id)
                                     ?
-                                    <div className='style-container'>
+                                    <div className='style-container' key={i}>
                                         <FontAwesomeIcon className='checkmark' icon="fa-solid fa-check" />
                                         <img className='style-image' height='65' width='60' src={style.photos[0].thumbnail_url} onClick={() => this.selectedStyle(style)} key={i}></img>
                                     </div>
                                     :
-                                    <div className='style-container'>
+                                    <div className='style-container' key={i}>
                                         <img className='style-image' height='65' width='60' src={style.photos[0].thumbnail_url} onClick={() => this.selectedStyle(style)} key={i}></img>
                                     </div>
                                 )
@@ -234,20 +242,20 @@ class OverviewAllie extends React.Component {
                             <FontAwesomeIcon icon="fa-brands fa-pinterest" />
                         </span>
                         <br></br>
-                        <div className='slogan'>{this.props.currentProduct.slogan}</div>
+                        <div className='slogan'><b>{this.props.currentProduct.slogan}</b></div>
                         <br></br>
                         <div className='product-description'>{this.props.currentProduct.description}</div>
                     </div>
                     <div className='otherStuff'>
                         {this.props.features?.map((feature, i) => (
-                            <div>
+                            <div key={i}>
                                 <div className='feature'>✔ {feature.value} {feature.feature}</div>
                                 <br></br>
                             </div>
                         ))}
                     </div>
                     <div className='products'>
-                        <div><b>Products</b></div>
+                        {/* <div><b>Products</b></div> */}
                         <div className='each-product'>
                             {this.props.products.map((product, i) => (
                                 <div className='products' onClick={() => this.selectedProduct(product)} key={i}>{product.name}</div>

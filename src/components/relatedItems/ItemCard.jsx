@@ -3,7 +3,7 @@ import StarRating from '../StarRating.jsx'
 
 const ItemCard = (props) => (
     <div id="ItemCard">
-        {console.log(props.productInfo)}
+        {/* {console.log(props.productInfo)} */}
         <div id="actionButton" onClick={e => {
         props.showModal(props.productInfo)
     }}>⭐️</div>

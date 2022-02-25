@@ -18,14 +18,12 @@ const HelpfulAndReport = (props) => {
 
   const handleHelpfulAndReportClick = () => {
     if(props.questionOrAnswer === 'question') {
-      console.log('button for questions is working')
       if (props.help) {
         props.updateHelpful('questions', props.question.question_id, 'helpful');
       } else {
         props.updateHelpful('questions', props.question.question_id, 'report');
       }
     } else {
-      console.log('button for answers is working')
       if (props.help) {
         props.updateHelpful('answers', props.answer.id, 'helpful');
       } else {

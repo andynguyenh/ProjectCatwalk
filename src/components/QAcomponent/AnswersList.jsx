@@ -86,6 +86,7 @@ export default AnswersList;
 const EachAnswer = Styled.div`
   display: flex;
   flex-direction: column;
+  align-items: left;
   padding: 20px;
 
 `

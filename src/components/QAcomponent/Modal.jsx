@@ -9,10 +9,6 @@ const Modal = (props) => {
   const onSubmit = (data) => {
     let body = {}
 
-    console.log(props.currentProduct_id)
-    console.log('body in modal', body)
-    console.log('data', data)
-
     if (!props.answers) {
       body = {
         body: data.question,
@@ -20,7 +16,6 @@ const Modal = (props) => {
         email: data.email,
         product_id: props.currentProduct_id
       }
-      console.log('this works in modal')
       props.addQorA(props.currentProduct_id, null, body)
     } else {
       body = {
@@ -158,8 +153,9 @@ const StyledModal = Styled.div`
   transform: translateX(-50%) translateY(-50%);
 `
 const ModalHeader = Styled.header`
-  background: indigo;
-  padding: 20px 20px;
+  background: black;
+  color:white;
+  padding: 10px 20px;
   display: block;
   justify-content: space-between;
 `
@@ -168,15 +164,17 @@ const ModalMain = Styled.main`
 `
 const Label = Styled.label`
   display: block;
+  flex-direction: column;
   white-space: pre-wrap;
   float: left;
+  margin-bottom: 15px;
 `
 const CloseButton = Styled.button`
   display: block;
   border-radius: 3px;
   cursor: pointer;
   padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
+  margin: 1rem 1rem;
   width: 11rem;
   background: black;
   color: white;

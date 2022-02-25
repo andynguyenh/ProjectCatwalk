@@ -302,7 +302,7 @@ class App extends React.Component {
     return (
       <div>
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features}/>
-        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} currentProductPrice={this.state.price} currentProductImage={this.state.image} currentProductFeatures={this.state.features}/>
         <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
         <RatingsAndReviews />
       </div>

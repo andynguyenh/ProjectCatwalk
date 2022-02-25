@@ -137,9 +137,8 @@ class RelatedProductsCarousel extends React.Component {
   render() {
     return (
       <div id="relatedProductsContainer">
-        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} itemCardData={this.state.itemCardData} />
-        <h3>Related Items: {this.props.currentProduct.name} ({this.state.relatedProductsIndex}/{this.props.relatedItems.length - 1})</h3>
-
+        {/* {console.log('image', this.props.currentProductImage)} */}
+        <ProductComparisonModal show={this.state.modalVisible} showModal={this.showModal} itemCardData={this.state.itemCardData} currentProduct={this.props.currentProduct} currentProductPrice={this.props.price} currentProductImage={this.props.image} currentProductFeatures={this.props.features}/>
         <div id="buttonLeftRight">
           <a className="relatedButton" onClick={() => {
             this.decrementRelatedProducts()

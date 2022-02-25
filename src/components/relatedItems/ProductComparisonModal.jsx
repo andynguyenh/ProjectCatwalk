@@ -18,8 +18,12 @@ const ProductComparisonModal = (props) => {
       <div id="ItemCard_Name">{props.itemCardData.name}</div>
       <div id="ItemCard_Category">{props.itemCardData.category}</div>
       <div id="ItemCard_Price">{props.itemCardData.price}</div>
-      <div id="ItemCard_Stars">{props.itemCardData.rating}</div>
       <StarRating size={16} rating={props.itemCardData.rating} />
+      <hr />
+      ohh buddy
+      <div>Price: {props.price}</div>
+      {console.log(props)}
+      <div><img src={props.currentProductImage} width="200" height="200"></img></div>
       </div>
       <div id="modal-footer">Footer</div>
     </div>

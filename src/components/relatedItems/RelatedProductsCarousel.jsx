@@ -142,9 +142,8 @@ class RelatedProductsCarousel extends React.Component {
         currentProductPrice={this.props.currentProductPrice}
         currentProductImage={this.props.currentProductImage}
         currentProductFeatures={this.props.currentProductFeatures}
-        currentItemRating={this.props.currentItemRating} />
 
-        {console.log('current item rating in relatedProductsCarousel', this.props.currentItemRating)}
+        currentItemRating={this.props.currentItemRating} />
         <div id="buttonLeftRight">
           <a className="relatedButton" onClick={() => {
             this.decrementRelatedProducts()

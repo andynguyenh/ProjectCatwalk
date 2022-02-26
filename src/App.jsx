@@ -81,7 +81,6 @@ class App extends React.Component {
             }
             // check for sale price otherwise default price
             let stylePrice;
-            console.log(styleRes)
             if (styleRes.data.results[0].sale_price !== null) {
               stylePrice = styleRes.data.results[0].sale_price;
             } else {
@@ -124,7 +123,6 @@ class App extends React.Component {
             this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
           }).then( () => {
             this.getProductRatings(this.state.currentProductID).then( productRatingsResult => {
-              console.log('setting average rating for the current product', productRatingsResult)
               this.setState({currentItemRating: this.averageProductRatings(productRatingsResult)})
             })
           })
@@ -153,7 +151,6 @@ class App extends React.Component {
   }
 
   addQuestionOrAnswer (QorA_id, endpoint, body) {
-    console.log(body)
     if (endpoint !== 'answers') {
       axios({
         method: 'post',
@@ -252,7 +249,7 @@ class App extends React.Component {
           method: 'get',
           url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${product.id}/related/`,
           headers: {
-            'Authorization': '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'
+            'Authorization': API_KEY
           }
         }).then((relatedItemsResponse) => {
           this.setState({

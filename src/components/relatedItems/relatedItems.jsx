@@ -12,7 +12,6 @@ class RelatedItems extends React.Component {
     render() {
 
         return (<div>
-                <h2>Related Products Module</h2>
                 <RelatedProductsCarousel
                 currentProduct={this.props.currentProduct}
                 relatedItems={this.props.relatedItems}

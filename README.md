@@ -184,9 +184,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-John Bronson - [John's LinkedIn Page](https://www.linkedin.com/in/john-bronson/) - jbronson@gmail.com
-Allie Diorio - [Allie's LinkedIn Page](https://www.linkedin.com/in/alliediorio/)
-Andy Nguyen - [Andy's LinkedIn Page](https://www.linkedin.com/in/andy-nguyen-15a921224/)
+*John Bronson - [John's LinkedIn Page](https://www.linkedin.com/in/john-bronson/) - jbronson@gmail.com
+*Allie Diorio - [Allie's LinkedIn Page](https://www.linkedin.com/in/alliediorio/)
+*Andy Nguyen - [Andy's LinkedIn Page](https://www.linkedin.com/in/andy-nguyen-15a921224/)
 
 Project Link: [https://github.com/FEC-Hickory/ProjectCatwalk](https://github.com/FEC-Hickory/ProjectCatwalk)
 

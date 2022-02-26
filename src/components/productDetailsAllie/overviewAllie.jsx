@@ -170,11 +170,7 @@ class OverviewAllie extends React.Component {
                         {this.state.expandImage
                             ? <div></div>
                             : <div className='star-icons'>
-                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
-                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
-                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
-                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
-                                <FontAwesomeIcon icon="fa-solid fa-star" size='2x'/>
+                                <StarRating size={32} rating={this.props.currentItemRating} />
                             </div>
                         }
                     </div>

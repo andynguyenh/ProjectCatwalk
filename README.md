@@ -81,13 +81,17 @@
 
   ![Project Screenshot](/img/Hickory-FEC-Screenshot.png)
 
-## Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `FEC-Hickory`, `ProjectCatwalk`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+<!-- 
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `FEC-Hickory`, `ProjectCatwalk`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+-->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
 * [React.js](https://reactjs.org/)
+* [Styled-components](https://styled-components.com/)
+* [Yup](https://github.com/jquense/yup)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

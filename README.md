@@ -184,13 +184,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+John Bronson - [John's LinkedIn Page](https://www.linkedin.com/in/john-bronson/) - jbronson@gmail.com
+Allie Diorio - [Allie's LinkedIn Page](https://www.linkedin.com/in/alliediorio/)
+Andy Nguyen - [Andy's LinkedIn Page](https://www.linkedin.com/in/andy-nguyen-15a921224/)
 
 Project Link: [https://github.com/FEC-Hickory/ProjectCatwalk](https://github.com/FEC-Hickory/ProjectCatwalk)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments

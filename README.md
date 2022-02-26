@@ -188,8 +188,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * Allie Diorio - [Allie's LinkedIn Page](https://www.linkedin.com/in/alliediorio/)
 * Andy Nguyen - [Andy's LinkedIn Page](https://www.linkedin.com/in/andy-nguyen-15a921224/)
 
-Project Link: [https://github.com/FEC-Hickory/ProjectCatwalk](https://github.com/FEC-Hickory/ProjectCatwalk)
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->

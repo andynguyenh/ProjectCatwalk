@@ -8,10 +8,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-<!-- NEW SECTION BRONSON IS TESTING -->
-
-# NEW SECTION BRONSON IS TESTING
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.

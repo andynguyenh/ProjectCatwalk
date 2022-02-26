@@ -261,8 +261,12 @@ class App extends React.Component {
         })
       }).then(() => {
         this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
-      })
-      .catch((err) => {
+      }).then( () => {
+        this.getProductRatings(this.state.currentProductID).then( productRatingsResult => {
+          console.log('setting average rating for the current product', productRatingsResult)
+          this.setState({currentItemRating: this.averageProductRatings(productRatingsResult)})
+        })
+      }).catch((err) => {
         console.log(err)
       })
       .catch(err => {
@@ -310,7 +314,7 @@ class App extends React.Component {
         <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features} currentItemRating={this.state.currentItemRating}/>
 
 
-        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} currentProductPrice={this.state.price} currentProductImage={this.state.image} currentProductFeatures={this.state.features}/>
+        <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} currentProductPrice={this.state.price} currentProductImage={this.state.image} currentProductFeatures={this.state.features} currentItemRating={this.state.currentItemRating}/>
 
         <QuestionsAndAnswers currentQuestions={this.state.currentQuestions} currentProduct={this.state.currentProduct} updateHelpful={this.updateHelpfulAndReport} addQorA={this.addQuestionOrAnswer}/>
         <RatingsAndReviews />

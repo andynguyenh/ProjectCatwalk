@@ -30,8 +30,6 @@
 <div align="center">
 
 <h3 align="center">Project Catwalk</h3>
-  
-  ![Tux, the Linux mascot](/img/Hickory-FEC-Screenshot.png)
 
   <p align="center">
     Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers.   Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
@@ -83,7 +81,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+  ![Project Screenshot](/img/Hickory-FEC-Screenshot.png)
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `FEC-Hickory`, `ProjectCatwalk`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
 

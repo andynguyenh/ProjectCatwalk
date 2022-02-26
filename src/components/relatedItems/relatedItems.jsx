@@ -19,7 +19,6 @@ class RelatedItems extends React.Component {
                 currentProductImage={this.props.currentProductImage}
                 currentProductFeatures={this.props.currentProductFeatures}
                 currentItemRating={this.props.currentItemRating}/>
-                {console.log('currentItemRating in relatedItems', this.props.currentItemRating)}
                 {/* <YourOutfitContainer /> */}
             </div>
         )

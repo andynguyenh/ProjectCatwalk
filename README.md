@@ -28,7 +28,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+
   <a href="https://github.com/FEC-Hickory/ProjectCatwalk">
+
     <img src="https://media.newyorker.com/photos/5dfab39dde5fcf00086aec77/16:9/w_2559,h_1439,c_limit/Lane-Cats.jpg" alt="Logo" width="80" height="80">
   </a>
 
@@ -40,7 +42,9 @@
     <a href="https://github.com/FEC-Hickory/ProjectCatwalk"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+
     <a href="https://github.com/FEC-Hickory/ProjectCatwalk">View Demo</a>
+
     ·
     <a href="https://github.com/FEC-Hickory/ProjectCatwalk/issues">Report Bug</a>
     ·
@@ -214,6 +218,7 @@ Project Link: [https://github.com/FEC-Hickory/ProjectCatwalk](https://github.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/FEC-Hickory/ProjectCatwalk.svg?style=for-the-badge
 [contributors-url]: https://github.com/FEC-Hickory/ProjectCatwalk/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/FEC-Hickory/ProjectCatwalk.svg?style=for-the-badge

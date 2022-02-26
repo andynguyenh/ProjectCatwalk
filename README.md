@@ -31,7 +31,7 @@
 
   <a href="https://github.com/FEC-Hickory/ProjectCatwalk">
 
-    <img src="https://media.newyorker.com/photos/5dfab39dde5fcf00086aec77/16:9/w_2559,h_1439,c_limit/Lane-Cats.jpg" alt="Logo" width="80" height="80">
+    <img src="https://github.com/FEC-Hickory/ProjectCatwalk/blob/dev/img/Hickory-FEC-Screenshot.png?raw=true>
   </a>
 
 <h3 align="center">Project Catwalk</h3>

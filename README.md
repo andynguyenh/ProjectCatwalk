@@ -57,6 +57,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+        ![App Screenshot](/img/Hickory-FEC-Screenshot.png)
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>

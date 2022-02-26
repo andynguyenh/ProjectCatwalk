@@ -31,7 +31,7 @@
 
   <a href="https://github.com/FEC-Hickory/ProjectCatwalk">
 
-    <img src="https://github.com/FEC-Hickory/ProjectCatwalk/blob/dev/img/Hickory-FEC-Screenshot.png?raw=true>
+    <img src="https://github.com/FEC-Hickory/ProjectCatwalk/blob/dev/img/Hickory-FEC-Screenshot.png">
   </a>
 
 <h3 align="center">Project Catwalk</h3>

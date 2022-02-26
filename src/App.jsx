@@ -8,6 +8,7 @@ import RatingsAndReviews from './components/ratingsAndReviews/ratingsAndReviews.
 import QuestionsList from './components/QAcomponent/Questionslist.jsx'
 import QASearchBar from './components/QAcomponent//QAsearch.jsx'
 import RelatedItems from './components/relatedItems/RelatedItems.jsx';
+import StarRating from './components/StarRating.jsx'
 
 
 class App extends React.Component {
@@ -27,7 +28,8 @@ class App extends React.Component {
       features: [],
       relatedItems: [],
       relatedItemsData: [],
-      currentItemRating: 0
+      currentItemRating: 0,
+      currentItemRating : 0
     }
     this.getProducts = this.getProducts.bind(this);
     this.updateStyle = this.updateStyle.bind(this);
@@ -54,7 +56,6 @@ class App extends React.Component {
   //add rating key/value pair to the object
   //push the object onto relatedItemsData
 
-
   getProducts() {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', { headers: { Authorization: `${API_KEY}` } })
       .then(productRes => {
@@ -78,9 +79,9 @@ class App extends React.Component {
               skuObj.size = allSkus[key].size;
               skuArray.push(skuObj);
             }
-
             // check for sale price otherwise default price
             let stylePrice;
+            console.log(styleRes)
             if (styleRes.data.results[0].sale_price !== null) {
               stylePrice = styleRes.data.results[0].sale_price;
             } else {
@@ -102,7 +103,7 @@ class App extends React.Component {
               method: 'get',
               url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productRes.data[0].id}/related/`,
               headers: {
-                'Authorization': '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'
+                'Authorization': `${API_KEY}`
               }
             })
               .then((relatedItemsResponse) => {
@@ -121,6 +122,11 @@ class App extends React.Component {
           })
           .then(() => {
             this.getCurrentProductQuestionsAndAnswers(this.state.currentProductID)
+          }).then( () => {
+            this.getProductRatings(this.state.currentProductID).then( productRatingsResult => {
+              console.log('setting average rating for the current product', productRatingsResult)
+              this.setState({currentItemRating: this.averageProductRatings(productRatingsResult)})
+            })
           })
           .catch((err) => {
             console.log(err)
@@ -301,7 +307,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features}/>
+        <OverviewAllie products={this.state.products} currentProduct={this.state.currentProduct} styles={this.state.styles} price={this.state.price} originalPrice={this.state.originalPrice} currentStyle={this.state.currentStyle} image={this.state.image} skus={this.state.skus} updateStyle={this.updateStyle} updateProduct={this.updateProduct} submitCart={this.submitCart} features={this.state.features} currentItemRating={this.state.currentItemRating}/>
+
 
         <RelatedItems currentProduct={this.state.currentProduct} relatedItems={this.state.relatedItems} currentProductPrice={this.state.price} currentProductImage={this.state.image} currentProductFeatures={this.state.features}/>
 

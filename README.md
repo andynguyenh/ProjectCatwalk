@@ -7,13 +7,10 @@
 <!-- PROJECT LOGO -->
 <div align="center">
 
-<h3 align="center">Project Catwalk</h3>
+<h3 text-align="center">Project Catwalk</h3>
 
   <p align="center">
-    Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers.   Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
-    <br />
-    <a href="https://github.com/FEC-Hickory/ProjectCatwalk"><strong>Explore the docs »</strong></a>
-    <a href="https://github.com/FEC-Hickory/ProjectCatwalk">View Demo »</a>
+    Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers. Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
   </p>
 </div>
 
